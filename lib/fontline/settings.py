@@ -17,15 +17,12 @@ patch_version = "0"
 # Help String
 # ------------------------------------------------------------------------------
 
-HELP = """
-----------------------------------------------------
-
+HELP = """====================================================
 font-line
 Copyright 2016 Christopher Simpkins
 MIT License
 Source: https://github.com/source-foundry/font-line
-
-----------------------------------------------------
+====================================================
 
 MESSAGE
 """
@@ -34,4 +31,4 @@ MESSAGE
 # Version String
 # ------------------------------------------------------------------------------
 
-VERSION = "font-line " + major_version + "." + minor_version + "." + patch_version
+VERSION = "font-line v" + major_version + "." + minor_version + "." + patch_version
