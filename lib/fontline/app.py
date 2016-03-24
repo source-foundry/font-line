@@ -3,6 +3,8 @@
 
 import sys
 
+from fontTools import ttLib
+
 from commandlines import Command
 from fontline import settings
 from standardstreams import stdout, stderr
@@ -22,5 +24,10 @@ def main():
         stdout(settings.VERSION)
         sys.exit(0)
     elif c.is_usage_request():
-        pass
+        stdout(settings.USAGE)
+        sys.exit(0)
+
+
+
+
 
