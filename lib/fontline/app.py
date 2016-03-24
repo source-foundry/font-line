@@ -14,6 +14,7 @@ from fontTools import ttLib
 
 from commandlines import Command
 from fontline import settings
+from fontline.commands import get_font_report
 from fontline.utilities import file_exists, is_supported_filetype
 from standardstreams import stdout, stderr
 
@@ -47,20 +48,11 @@ def main():
                 if file_exists(fontpath):
                     # test that filepath includes file of a supported file type
                     if is_supported_filetype(fontpath):
-                        tt = ttLib.TTFont(fontpath)
-                        # Print the file path as a header
-                        stdout(" ")
-                        stdout("=== " + fontpath + " ===")
-                        namerecord_list = tt['name'].__dict__['names']
-                        # Print the version string
-                        for needle in namerecord_list:
-                            if needle.__dict__['langID'] == 0 and needle.__dict__['nameID'] == 5:
-                                stdout(needle.__dict__['string'])
-                        
+                        stdout(get_font_report(fontpath))
                     else:
                         stderr("[font-line] '" + fontpath + "' does not appear to be a supported font file type.")
                 else:
-                    stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a valid filepath." )
+                    stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a valid filepath.")
     # MOD sub-command
     elif c.subcmd == "mod":
         pass
