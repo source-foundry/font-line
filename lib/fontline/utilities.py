@@ -10,3 +10,11 @@ def file_exists(filepath):
         return True
     else:
         return False
+
+def is_supported_filetype(filepath):
+    """Tests file extension to determine appropriate file type for the application"""
+    testpath = filepath.lower()
+    if testpath.endswith('.ttf') or testpath.endswith('.otf'):
+        return True
+    else:
+        return False
