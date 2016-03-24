@@ -14,7 +14,7 @@ from fontTools import ttLib
 
 from commandlines import Command
 from fontline import settings
-from fontline.utilities import file_exists
+from fontline.utilities import file_exists, is_supported_filetype
 from standardstreams import stdout, stderr
 
 
@@ -36,6 +36,7 @@ def main():
         stdout(settings.USAGE)
         sys.exit(0)
 
+    # REPORT sub-command
     if c.subcmd == "report":
         if c.argc < 2:
             stderr("[font-line] ERROR: missing file path argument(s) after the report subcommand.")
@@ -44,13 +45,23 @@ def main():
             for fontpath in c.argv[1:]:
                 # test for existence of file on path
                 if file_exists(fontpath):
-                    testpath = fontpath.lower()
-                    if testpath.endswith(".ttf") or testpath.endswith(".otf"):
-                        stdout("TRUE")
+                    # test that filepath includes file of a supported file type
+                    if is_supported_filetype(fontpath):
+                        tt = ttLib.TTFont(fontpath)
+                        # Print the file path as a header
+                        stdout(" ")
+                        stdout("=== " + fontpath + " ===")
+                        namerecord_list = tt['name'].__dict__['names']
+                        # Print the version string
+                        for needle in namerecord_list:
+                            if needle.__dict__['langID'] == 0 and needle.__dict__['nameID'] == 5:
+                                stdout(needle.__dict__['string'])
+                        
                     else:
-                        stderr("[font-line] '" + fontpath + "' does not appear to be a supported file type.")
+                        stderr("[font-line] '" + fontpath + "' does not appear to be a supported font file type.")
                 else:
                     stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a valid filepath." )
+    # MOD sub-command
     elif c.subcmd == "mod":
         pass
     else:
