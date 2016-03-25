@@ -14,9 +14,8 @@ from commandlines import Command
 from standardstreams import stdout, stderr
 
 from fontline import settings
-from fontline.commands import get_font_report
+from fontline.commands import get_font_report, modify_font
 from fontline.utilities import file_exists, is_supported_filetype
-
 
 
 def main():
@@ -24,7 +23,7 @@ def main():
     c = Command()
 
     if c.does_not_validate_missing_args():
-        stderr("[font-line] ERROR: please include one or more arguments with your command.\n")
+        stderr("[font-line] ERROR: Please include one or more arguments with your command.")
         sys.exit(1)
 
     if c.is_help_request():
@@ -40,7 +39,7 @@ def main():
     # REPORT sub-command
     if c.subcmd == "report":
         if c.argc < 2:
-            stderr("[font-line] ERROR: missing file path argument(s) after the report subcommand.")
+            stderr("[font-line] ERROR: Missing file path argument(s) after the report subcommand.")
             sys.exit(1)
         else:
             for fontpath in c.argv[1:]:
@@ -55,7 +54,24 @@ def main():
                     stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a valid filepath.")
     # MOD sub-command
     elif c.subcmd == "mod":
-        pass
+        if c.argc < 3:
+            stderr("[font-line] ERROR: Not enough arguments.")
+            sys.exit(1)
+        else:
+            percent = c.argv[1]
+            try:
+                int(percent)  # test that the argument can be cast to an integer value
+            except ValueError:
+                stderr("[font-line] ERROR: You entered '" + percent + "'. This argument needs to be an integer value.")
+                sys.exit(1)
+            for fontpath in c.argv[2:]:
+                if file_exists(fontpath):
+                    if is_supported_filetype(fontpath):
+                        modify_font(fontpath, percent)
+                    else:
+                        stderr("[font-line] '" + fontpath + "' does not appear to be a supported font file type.")
+                else:
+                    stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a valid filepath.")
     else:
         stderr("[font-lines] ERROR: You used an unsupported argument to the executable. Please review the"
                " `font-line --help` documentation and try again.")
