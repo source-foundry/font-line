@@ -11,6 +11,7 @@ def file_exists(filepath):
     else:
         return False
 
+
 def is_supported_filetype(filepath):
     """Tests file extension to determine appropriate file type for the application"""
     testpath = filepath.lower()
