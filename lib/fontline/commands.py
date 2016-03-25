@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from fontTools import ttLib
+from fontline.utilities import get_sha1
 
 
 def get_font_report(fontpath):
@@ -13,7 +14,9 @@ def get_font_report(fontpath):
     # The version string
     for needle in namerecord_list:
         if needle.__dict__['langID'] == 0 and needle.__dict__['nameID'] == 5:
-            report_string = report_string + needle.__dict__['string'] + "\n\n"
+            report_string = report_string + needle.__dict__['string'] + "\n"
+    # The SHA1 string
+    report_string = report_string + "SHA1: " + get_sha1(fontpath) + "\n\n"
     # The vertical metrics strings
     report_string = report_string + "[OS/2] TypoAscender: \t" + str(tt['OS/2'].__dict__['sTypoAscender']) + "\n"
     report_string = report_string + "[OS/2] TypoDescender: \t" + str(tt['OS/2'].__dict__['sTypoDescender']) + "\n"
@@ -21,6 +24,7 @@ def get_font_report(fontpath):
     report_string = report_string + "[OS/2] WinDescent: \t" + str(tt['OS/2'].__dict__['usWinDescent']) + "\n"
     report_string = report_string + "[hhea] Ascent: \t\t" + str(tt['hhea'].__dict__['ascent']) + "\n"
     report_string = report_string + "[hhea] Descent: \t" + str(tt['hhea'].__dict__['descent']) + "\n\n"
+    report_string = report_string + "[hhea] LineGap: \t" + str(tt['hhea'].__dict__['lineGap']) + "\n"
     report_string = report_string + "[OS/2] TypoLineGap: \t" + str(tt['OS/2'].__dict__['sTypoLineGap'])
 
     return report_string
@@ -28,8 +32,14 @@ def get_font_report(fontpath):
 
 def modify_font(fontpath, percent):
     tt = ttLib.TTFont(fontpath)
+
+    # get observed start values from the font
     os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
     os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
+    hhea_linegap = tt['hhea'].__dict__['lineGap']
+
+    # redefine hhea linegap to 0
+    hhea_linegap = 0
 
     factor = 1.0 * int(percent) / 100
 
@@ -48,10 +58,10 @@ def modify_font(fontpath, percent):
 
     print(os2_typo_ascender)
     print(os2_typo_descender)
-    print(factor)
     print(os2_typo_linegap)
     print(total_height)
     print(hhea_ascender)
     print(hhea_descender)
+    print(hhea_linegap)
     print(os2_win_ascent)
     print(os2_win_descent)
