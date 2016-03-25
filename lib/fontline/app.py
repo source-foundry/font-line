@@ -10,13 +10,13 @@ line arguments to the executable.  It currently supports .ttf and .otf font buil
 
 import sys
 
-from fontTools import ttLib
-
 from commandlines import Command
+from standardstreams import stdout, stderr
+
 from fontline import settings
 from fontline.commands import get_font_report
 from fontline.utilities import file_exists, is_supported_filetype
-from standardstreams import stdout, stderr
+
 
 
 def main():
