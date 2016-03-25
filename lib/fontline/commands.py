@@ -7,6 +7,22 @@ from fontline.utilities import get_sha1
 
 def get_font_report(fontpath):
     tt = ttLib.TTFont(fontpath)
+
+    # Vertical metrics values as integers
+    os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
+    os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
+    os2_win_ascent = tt['OS/2'].__dict__['usWinAscent']
+    os2_win_descent = tt['OS/2'].__dict__['usWinDescent']
+    os2_typo_linegap = tt['OS/2'].__dict__['sTypoLineGap']
+    hhea_ascent = tt['hhea'].__dict__['ascent']
+    hhea_descent = tt['hhea'].__dict__['descent']
+    hhea_linegap = tt['hhea'].__dict__['lineGap']
+
+    # Calculated values
+    os2_typo_total_height = os2_typo_ascender + -(os2_typo_descender)
+    os2_win_total_height = os2_win_ascent + os2_win_descent
+    hhea_total_height = hhea_ascent + -(hhea_descent)
+
     # The file path header
     report_string = " \n"
     report_string = report_string + "=== " + fontpath + " ===\n"
@@ -18,14 +34,23 @@ def get_font_report(fontpath):
     # The SHA1 string
     report_string = report_string + "SHA1: " + get_sha1(fontpath) + "\n\n"
     # The vertical metrics strings
-    report_string = report_string + "[OS/2] TypoAscender: \t" + str(tt['OS/2'].__dict__['sTypoAscender']) + "\n"
-    report_string = report_string + "[OS/2] TypoDescender: \t" + str(tt['OS/2'].__dict__['sTypoDescender']) + "\n"
-    report_string = report_string + "[OS/2] WinAscent: \t" + str(tt['OS/2'].__dict__['usWinAscent']) + "\n"
-    report_string = report_string + "[OS/2] WinDescent: \t" + str(tt['OS/2'].__dict__['usWinDescent']) + "\n"
-    report_string = report_string + "[hhea] Ascent: \t\t" + str(tt['hhea'].__dict__['ascent']) + "\n"
-    report_string = report_string + "[hhea] Descent: \t" + str(tt['hhea'].__dict__['descent']) + "\n\n"
-    report_string = report_string + "[hhea] LineGap: \t" + str(tt['hhea'].__dict__['lineGap']) + "\n"
-    report_string = report_string + "[OS/2] TypoLineGap: \t" + str(tt['OS/2'].__dict__['sTypoLineGap'])
+    report_string = report_string + "[OS/2] TypoAscender: \t" + str(os2_typo_ascender) + "\n"
+    report_string = report_string + "[OS/2] TypoDescender: \t" + str(os2_typo_descender) + "\n"
+    report_string = report_string + "[OS/2] WinAscent: \t" + str(os2_win_ascent) + "\n"
+    report_string = report_string + "[OS/2] WinDescent: \t" + str(os2_win_descent) + "\n"
+    report_string = report_string + "[hhea] Ascent: \t\t" + str(hhea_ascent) + "\n"
+    report_string = report_string + "[hhea] Descent: \t" + str(hhea_descent) + "\n\n"
+    report_string = report_string + "[hhea] LineGap: \t" + str(hhea_linegap) + "\n"
+    report_string = report_string + "[OS/2] TypoLineGap: \t" + str(os2_typo_linegap) + "\n\n"
+    report_string = report_string + "--- Height Calculations by Table Values ---" + "\n"
+    report_string = report_string + "[OS/2] TypoAscender to TypoDescender: \t" + str(os2_typo_total_height) + "\n"
+    report_string = report_string + "[OS/2] WinAscent to WinDescent: \t" + str(os2_win_total_height) + "\n"
+    report_string = report_string + "[hhea] Ascent to Descent: \t\t" + str(hhea_total_height) + "\n\n"
+    report_string = report_string + "--- Delta Values ---" + "\n"
+    report_string = report_string + "WinAscent to TypoAscender: \t" + str(os2_win_ascent - os2_typo_ascender) + "\n"
+    report_string = report_string + "Ascent to TypoAscender: \t" + str(hhea_ascent - os2_typo_ascender) + "\n"
+    report_string = report_string + "WinDescent to TypoDescender: \t" + str(os2_win_descent - -(os2_typo_descender)) + "\n"
+    report_string = report_string + "Descent to TypoDescender: \t" + str(os2_typo_descender - (hhea_descent))
 
     return report_string
 
