@@ -17,6 +17,9 @@ def get_font_report(fontpath):
     hhea_ascent = tt['hhea'].__dict__['ascent']
     hhea_descent = tt['hhea'].__dict__['descent']
     hhea_linegap = tt['hhea'].__dict__['lineGap']
+    units_per_em = tt['head'].__dict__['unitsPerEm']
+
+    linegap_to_upm = 1.0 * os2_typo_linegap / units_per_em
 
     # Calculated values
     os2_typo_total_height = os2_typo_ascender + -(os2_typo_descender)
@@ -34,6 +37,7 @@ def get_font_report(fontpath):
     # The SHA1 string
     report_string = report_string + "SHA1: " + get_sha1(fontpath) + "\n\n"
     # The vertical metrics strings
+    report_string = report_string + "[head] Units per Em: \t" + str(units_per_em) + "\n"
     report_string = report_string + "[OS/2] TypoAscender: \t" + str(os2_typo_ascender) + "\n"
     report_string = report_string + "[OS/2] TypoDescender: \t" + str(os2_typo_descender) + "\n"
     report_string = report_string + "[OS/2] WinAscent: \t" + str(os2_win_ascent) + "\n"
@@ -50,7 +54,9 @@ def get_font_report(fontpath):
     report_string = report_string + "WinAscent to TypoAscender: \t" + str(os2_win_ascent - os2_typo_ascender) + "\n"
     report_string = report_string + "Ascent to TypoAscender: \t" + str(hhea_ascent - os2_typo_ascender) + "\n"
     report_string = report_string + "WinDescent to TypoDescender: \t" + str(os2_win_descent - -(os2_typo_descender)) + "\n"
-    report_string = report_string + "Descent to TypoDescender: \t" + str(os2_typo_descender - (hhea_descent))
+    report_string = report_string + "Descent to TypoDescender: \t" + str(os2_typo_descender - hhea_descent) + "\n\n"
+    report_string = report_string + "--- Ratio of Linegap to UPM ---" + "\n"
+    report_string = report_string + "TypoLineGap / UPM: \t" + str('{0:.3g}'.format(linegap_to_upm))
 
     return report_string
 
