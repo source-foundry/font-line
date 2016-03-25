@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import hashlib
 
 
 def file_exists(filepath):
@@ -19,3 +20,14 @@ def is_supported_filetype(filepath):
         return True
     else:
         return False
+
+
+def read_bin(filepath):
+    with open(filepath, 'rb') as bin_reader:
+        return bin_reader.read()
+
+
+def get_sha1(filepath):
+    with open(filepath, 'rb') as bin_reader:
+        data = bin_reader.read()
+    return hashlib.sha1(data).hexdigest()
