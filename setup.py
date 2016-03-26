@@ -30,7 +30,7 @@ def version_read():
 setup(
     name='font-line',
     version=version_read(),
-    description='A command line font line spacing tool',
+    description='A font vertical metrics reporting and line spacing adjustment tool',
     long_description=(docs_read('README.rst')),
     url='https://github.com/source-foundry/font-line',
     license='MIT license',
