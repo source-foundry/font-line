@@ -1,4 +1,5 @@
-## font-line
+## font-line [![Build Status](https://travis-ci.org/source-foundry/font-line.svg?branch=master)](https://travis-ci.org/source-foundry/font-line)  [![Build status](https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true)](https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master)
+
 
 ### About
 font-line is a libre open source command line tool for font vertical metrics reporting and line spacing modifications.  It currently supports reporting and modifications of `.ttf` and `.otf` font builds.
