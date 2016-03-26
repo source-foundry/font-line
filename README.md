@@ -40,7 +40,7 @@ $ python setup.py install
 
 ### Usage
 
-font-line works via sub-commands to the `font-line` executable.  The following sub-commands are currently supported:
+font-line works via sub-commands to the `font-line` executable.  The following sub-commands are available:
 
 - `percent` - modify the line spacing of a font to a percent of the Ascender to Descender delta value
 - `report` - report OpenType metrics values for a font
