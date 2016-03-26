@@ -156,6 +156,12 @@ Note that the internal leading modifications are split evenly across [hhea] Asce
 
 These newly defined properties can lead to clipping of glyph components if not properly defined.  There are no tests in font-line to provide assurance that this does not occur. We assume that the user is versed in these issues before use of the application and leave this testing to the designer / user before the modified fonts are used in a production setting.
 
+
+### Issue Reporting
+
+Please [submit a new issue report](https://github.com/source-foundry/font-line/issues/new) on the project repository.
+
+
 ### Acknowledgments
 
 font-line is built with the fantastic [fontTools](https://github.com/behdad/fonttools) Python library.
