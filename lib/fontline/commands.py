@@ -37,7 +37,7 @@ def get_font_report(fontpath):
     # The version string
     for needle in namerecord_list:
         if needle.__dict__['langID'] == 0 and needle.__dict__['nameID'] == 5:
-            report_string = report_string + needle.__dict__['string'] + "\n"
+            report_string = report_string + str(needle.__dict__['string']) + "\n"
     # The SHA1 string
     report_string = report_string + "SHA1: " + get_sha1(fontpath) + "\n\n"
     # The vertical metrics strings
