@@ -14,8 +14,10 @@ from commandlines import Command
 from standardstreams import stdout, stderr
 
 from fontline import settings
-from fontline.commands import get_font_report, modify_font
+from fontline.commands import get_font_report, modify_linegap_percent, get_linegap_percent_filepath
 from fontline.utilities import file_exists, is_supported_filetype
+
+# TODO: support integer addition and subtraction to the linegap value through new sub-commands
 
 
 def main():
@@ -52,8 +54,8 @@ def main():
                         stderr("[font-line] '" + fontpath + "' does not appear to be a supported font file type.")
                 else:
                     stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a valid filepath.")
-    # MOD sub-command
-    elif c.subcmd == "mod":
+    # PERCENT sub-command
+    elif c.subcmd == "percent":
         if c.argc < 3:
             stderr("[font-line] ERROR: Not enough arguments.")
             sys.exit(1)
@@ -67,9 +69,12 @@ def main():
             for fontpath in c.argv[2:]:
                 if file_exists(fontpath):
                     if is_supported_filetype(fontpath):
-                        modify_font(fontpath, percent)
+                        if modify_linegap_percent(fontpath, percent) is True:
+                            outpath = get_linegap_percent_filepath(fontpath, percent)
+                            stdout("[font-line] '" + fontpath + "' successfully modified and is available at '" +
+                                   outpath + "'.")
                     else:
-                        stderr("[font-line] '" + fontpath + "' does not appear to be a supported font file type.")
+                        stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a supported font file type.")
                 else:
                     stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a valid filepath.")
     else:
