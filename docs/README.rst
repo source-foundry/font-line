@@ -1,6 +1,8 @@
 font-line
 ---------
 
+Project Source: `https://github.com/source-foundry/font-line <https://github.com/source-foundry/font-line>`__
+
 About
 ~~~~~
 
