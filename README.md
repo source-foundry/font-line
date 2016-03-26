@@ -17,7 +17,7 @@ $ pip install font-line
 
 #### Download Project Repository and Install
 
-The current repository version (which may be ahead of the PyPI release) can be installed by [downloading the repository](https://github.com/source-foundry/font-line/archive/master.zip) or pulling it with git:
+The current repository version (which may be ahead of the PyPI release) can be installed by [downloading the repository](https://github.com/source-foundry/font-line/archive/master.zip) or cloning it with git:
 
 ```
 git clone https://github.com/source-foundry/font-line.git
