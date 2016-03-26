@@ -110,7 +110,7 @@ $ font-line report TheFont.ttf > font-report.txt
 
 #### Vertical Metrics Modifications
 
-font-line currently supports automated line spacing modifications to a user-defined percentage of the TypoAscender to TypoDescender metric (often defined with the same value as the font units per em metric).  This delta value will be abbreviated as TA:TD below.
+font-line supports automated line spacing modifications to a user-defined percentage of the TypoAscender to TypoDescender metric (often defined with the same value as the font units per em metric).  This delta value will be abbreviated as TA:TD below.
 
 ##### `percent` Sub-Command Usage
 
