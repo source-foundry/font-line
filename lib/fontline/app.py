@@ -18,6 +18,7 @@ from fontline.commands import get_font_report, modify_linegap_percent, get_lineg
 from fontline.utilities import file_exists, is_supported_filetype
 
 # TODO: support integer addition and subtraction to the linegap value through new sub-commands
+# TODO: support .woff and .woff2 file types?
 
 
 def main():
