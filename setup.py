@@ -48,7 +48,7 @@ setup(
     keywords='font,typeface,fonts,spacing,line spacing,spaces,vertical metrics,metrics,type',
     include_package_data=True,
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 3 - Alpha',
         'Natural Language :: English',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
