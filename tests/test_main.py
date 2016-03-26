@@ -92,3 +92,4 @@ def test_fontline_commandline_notenough_args(capsys):
         out, err = capsys.readouterr()
         assert err == "[font-line] ERROR: Please include one or more arguments with your command."
 
+

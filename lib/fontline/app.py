@@ -53,7 +53,7 @@ def main():
                     if is_supported_filetype(fontpath):
                         stdout(get_font_report(fontpath))
                     else:
-                        stderr("[font-line] '" + fontpath + "' does not appear to be a supported font file type.")
+                        stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a supported font file type.")
                 else:
                     stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a valid filepath.")
     # PERCENT sub-command
