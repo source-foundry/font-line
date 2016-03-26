@@ -19,6 +19,7 @@ from fontline.utilities import file_exists, is_supported_filetype
 
 # TODO: support integer addition and subtraction to the linegap value through new sub-commands
 # TODO: support .woff and .woff2 file types?
+# TODO: JSON formatted metrics output
 
 
 def main():
@@ -74,6 +75,8 @@ def main():
                             outpath = get_linegap_percent_filepath(fontpath, percent)
                             stdout("[font-line] '" + fontpath + "' successfully modified and is available at '" +
                                    outpath + "'.")
+                        else:
+                            stderr("[font-line] ERROR: Unsuccessful modification of '" + fontpath + "'.")
                     else:
                         stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a supported font file type.")
                 else:
