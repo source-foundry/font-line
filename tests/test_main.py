@@ -55,3 +55,23 @@ def test_fontline_commandline_longusage(capsys):
         main()
         out, err = capsys.readouterr()
         assert out.endswith("Usage: font-line [subcommand] <arg> [font path 1] <font path 2> <font path ...>") is True
+
+
+def test_fontline_commandline_shortversion(capsys):
+    with pytest.raises(SystemExit):
+        from fontline.app import main
+        from fontline.app import settings
+        sys.argv = ['font-line', '-v']
+        main()
+        out, err = capsys.readouterr()
+        assert out == settings.VERSION
+
+
+def test_fontline_commandline_longversion(capsys):
+    with pytest.raises(SystemExit):
+        from fontline.app import main
+        from fontline.app import settings
+        sys.argv = ['font-line', '--version']
+        main()
+        out, err = capsys.readouterr()
+        assert out == settings.VERSION
