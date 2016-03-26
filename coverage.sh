@@ -1,6 +1,6 @@
 #!/bin/sh
 
-coverage run --source {{PROJECT}} -m py.test
+coverage run --source fontline -m py.test
 coverage report -m
 coverage html
 
