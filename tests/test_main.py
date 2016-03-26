@@ -46,3 +46,12 @@ def test_fontline_commandline_longhelp(capsys):
         out, err = capsys.readouterr()
         assert out.startswith("====================================================") is True
         assert out.endswith("https://github.com/source-foundry/font-line") is True
+
+
+def test_fontline_commandline_longusage(capsys):
+    with pytest.raises(SystemExit):
+        from fontline.app import main
+        sys.argv = ['font-line', '--usage']
+        main()
+        out, err = capsys.readouterr()
+        assert out.endswith("Usage: font-line [subcommand] <arg> [font path 1] <font path 2> <font path ...>") is True

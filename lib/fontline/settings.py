@@ -67,5 +67,4 @@ VERSION = "font-line v" + major_version + "." + minor_version + "." + patch_vers
 # ------------------------------------------------------------------------------
 
 USAGE = """
-Usage: font-line [subcommand] <arg> [font path 1] <font path 2> <font path ...>
-"""
+Usage: font-line [subcommand] <arg> [font path 1] <font path 2> <font path ...>"""
