@@ -29,18 +29,20 @@ def test_pytest_capsys(capsys):
 # ///////////////////////////////////////////////////////
 
 def test_fontline_commandline_shorthelp(capsys):
-    from fontline.app import main
-    sys.argv = ['font-line', '-h']
-    main()
-    out, err = capsys.readouterr()
-    assert out.startswith("====================================================") is True
-    assert out.endswith("https://github.com/source-foundry/font-line") is True
+    with pytest.raises(SystemExit):
+        from fontline.app import main
+        sys.argv = ['font-line', '-h']
+        main()
+        out, err = capsys.readouterr()
+        assert out.startswith("====================================================") is True
+        assert out.endswith("https://github.com/source-foundry/font-line") is True
 
 
 def test_fontline_commandline_longhelp(capsys):
-    from fontline.app import main
-    sys.argv = ['font-line', '--help']
-    main()
-    out, err = capsys.readouterr()
-    assert out.startswith("====================================================") is True
-    assert out.endswith("https://github.com/source-foundry/font-line") is True
+    with pytest.raises(SystemExit):
+        from fontline.app import main
+        sys.argv = ['font-line', '--help']
+        main()
+        out, err = capsys.readouterr()
+        assert out.startswith("====================================================") is True
+        assert out.endswith("https://github.com/source-foundry/font-line") is True
