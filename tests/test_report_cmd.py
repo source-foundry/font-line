@@ -5,7 +5,6 @@ import sys
 import pytest
 import os.path
 import os
-from fontline.utilities import file_exists
 
 # ///////////////////////////////////////////////////////
 #
@@ -83,3 +82,66 @@ def test_report_cmd_reportstring_typoascender(capsys):
     main()
     out, err = capsys.readouterr()
     assert "[OS/2] TypoAscender: \t1556" in out
+
+
+def test_report_cmd_reportstring_typodescender(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[OS/2] TypoDescender: \t-492" in out
+
+
+def test_report_cmd_reportstring_winascent(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[OS/2] WinAscent: \t1901" in out
+
+
+def test_report_cmd_reportstring_windescent(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[OS/2] WinDescent: \t483" in out
+
+
+def test_report_cmd_reportstring_ascent(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[hhea] Ascent: \t\t1901" in out
+
+
+def test_report_cmd_reportstring_descent(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[hhea] Descent: \t-483" in out
+
+
+def test_report_cmd_reportstring_linegap(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[hhea] LineGap: \t0" in out
+
+
+def test_report_cmd_reportstring_typolinegap(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[hhea] TypoLineGap: \t0" in out
