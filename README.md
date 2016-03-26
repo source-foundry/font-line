@@ -33,7 +33,7 @@ $ python setup.py install
 
 font-line works via sub-commands to the `font-line` executable.  The following sub-commands are currently supported:
 
-- `percent` - modify the line spacing of a font to a percent of the upper case glyph size (em size)
+- `percent` - modify the line spacing of a font to a percent of the Ascender to Descender delta value
 - `report` - report OpenType metrics values for a font
 
 Usage of these sub-commands is described in detail below.
