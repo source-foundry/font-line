@@ -73,7 +73,7 @@ def test_report_cmd_reportstring_upm(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[head] Units per Em:    2048" in out
+    assert "[head] Units per Em: \t2048" in out
 
 
 def test_report_cmd_reportstring_typoascender(capsys):
@@ -82,4 +82,4 @@ def test_report_cmd_reportstring_typoascender(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[OS/2] TypoAscender:    1556" in out
+    assert "[OS/2] TypoAscender: \t1556" in out
