@@ -1,7 +1,7 @@
 ## font-line
 
 ### About
-font-line is a libre open source command line tool for font vertical metrics reporting and modification.  It currently supports reporting and modifications of `.ttf` and `.otf` font builds.
+font-line is a libre open source command line tool for font vertical metrics reporting and line spacing modifications.  It currently supports reporting and modifications of `.ttf` and `.otf` font builds.
 
 ### Install
 
