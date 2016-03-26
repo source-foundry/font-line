@@ -75,3 +75,20 @@ def test_fontline_commandline_longversion(capsys):
         main()
         out, err = capsys.readouterr()
         assert out == settings.VERSION
+
+
+# ///////////////////////////////////////////////////////
+#
+# Command line argument error test
+#
+# ///////////////////////////////////////////////////////
+
+def test_fontline_commandline_notenough_args(capsys):
+    with pytest.raises(SystemExit):
+        from fontline.app import main
+        from fontline.app import settings
+        sys.argv = ['font-line']
+        main()
+        out, err = capsys.readouterr()
+        assert err == "[font-line] ERROR: Please include one or more arguments with your command."
+
