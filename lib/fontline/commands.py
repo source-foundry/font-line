@@ -59,7 +59,7 @@ def get_font_report(fontpath):
     report_string = report_string + "Ascent to TypoAscender: \t" + str(hhea_ascent - os2_typo_ascender) + "\n"
     report_string = report_string + "WinDescent to TypoDescender: \t" + str(os2_win_descent - -(os2_typo_descender)) + "\n"
     report_string = report_string + "Descent to TypoDescender: \t" + str(os2_typo_descender - hhea_descent) + "\n\n"
-    report_string = report_string + "--- Ratio of Linegap to UPM ---" + "\n"
+    report_string = report_string + "--- Ratio of TypoLineGap to UPM ---" + "\n"
     report_string = report_string + "TypoLineGap / UPM: \t" + str('{0:.3g}'.format(linegap_to_upm))
 
     return report_string
