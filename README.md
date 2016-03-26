@@ -5,7 +5,7 @@ font-line is a libre open source command line tool for font vertical metrics rep
 
 ### Install
 
-Use either of the following methods to install font-line on your system.
+font-line is built with Python and can be used on any system where the Python interpreter is installed. Use either of the following methods to install font-line on your system.
 
 #### pip Install
 
