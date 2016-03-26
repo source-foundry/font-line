@@ -1,5 +1,5 @@
-font-line
----------
+font-line |Build Status| |Build status|
+---------------------------------------
 
 Project Source: `https://github.com/source-foundry/font-line <https://github.com/source-foundry/font-line>`__
 
@@ -228,3 +228,8 @@ Acknowledgments
 
 font-line is built with the fantastic
 `fontTools <https://github.com/behdad/fonttools>`__ Python library.
+
+.. |Build Status| image:: https://travis-ci.org/source-foundry/font-line.svg?branch=master
+   :target: https://travis-ci.org/source-foundry/font-line
+.. |Build status| image:: https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true
+   :target: https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master
