@@ -53,8 +53,7 @@ glyph set or hints associated with the original font build.
 
 For more information about the OpenType table modifications that occur, please see the project documentation at:
 
-https://github.com/source-foundry/font-line
-"""
+https://github.com/source-foundry/font-line"""
 
 # ------------------------------------------------------------------------------
 # Version String
