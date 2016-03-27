@@ -22,11 +22,6 @@ def is_supported_filetype(filepath):
         return False
 
 
-def read_bin(filepath):
-    with open(filepath, 'rb') as bin_reader:
-        return bin_reader.read()
-
-
 def get_sha1(filepath):
     with open(filepath, 'rb') as bin_reader:
         data = bin_reader.read()
