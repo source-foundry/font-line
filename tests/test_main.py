@@ -86,10 +86,18 @@ def test_fontline_commandline_longversion(capsys):
 def test_fontline_commandline_notenough_args(capsys):
     with pytest.raises(SystemExit):
         from fontline.app import main
-        from fontline.app import settings
         sys.argv = ['font-line']
         main()
         out, err = capsys.readouterr()
         assert err == "[font-line] ERROR: Please include one or more arguments with your command."
+
+
+def test_fontline_commandline_bad_subcmd(capsys):
+    with pytest.raises(SystemExit):
+        from fontline.app import main
+        sys.argv = ['font-line', 'bogus']
+        main()
+        out, err = capsys.readouterr()
+        assert err.startswith("[font-lines] ERROR: You used an unsupported") is True
 
 
