@@ -63,8 +63,15 @@ def main():
             sys.exit(1)
         else:
             percent = c.argv[1]
+            # test the percent integer argument
             try:
-                int(percent)  # test that the argument can be cast to an integer value
+                percent_int = int(percent)  # test that the argument can be cast to an integer value
+                if percent_int <= 0:
+                    stderr("[font-line] ERROR: Please enter a percent value that is greater than zero.")
+                    sys.exit(1)
+                if percent_int > 100:
+                    stdout("[font-line] Warning: You entered a percent value over 100%. Please confirm that this is "
+                           "your intended metrics modification.")
             except ValueError:
                 stderr("[font-line] ERROR: You entered '" + percent + "'. This argument needs to be an integer value.")
                 sys.exit(1)
@@ -73,8 +80,7 @@ def main():
                     if is_supported_filetype(fontpath):
                         if modify_linegap_percent(fontpath, percent) is True:
                             outpath = get_linegap_percent_filepath(fontpath, percent)
-                            stdout("[font-line] '" + fontpath + "' successfully modified and is available at '" +
-                                   outpath + "'.")
+                            stdout("[font-line] '" + fontpath + "' successfully modified to '" + outpath + "'.")
                         else:
                             stderr("[font-line] ERROR: Unsuccessful modification of '" + fontpath + "'.")
                     else:
