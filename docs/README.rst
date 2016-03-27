@@ -6,7 +6,8 @@ Project Source: `https://github.com/source-foundry/font-line <https://github.com
 About
 ~~~~~
 
-font-line is a libre, open source command line tool for OpenType vertical metrics reporting and command line based font line spacing modifications. It currently supports
+font-line is a libre open source command line tool for font vertical
+metrics reporting and line spacing modifications. It currently supports
 reporting and modifications of ``.ttf`` and ``.otf`` font builds.
 
 Contents
@@ -27,13 +28,14 @@ Contents
 Install
 ~~~~~~~
 
-font-line is built with Python and can be used on systems with Python 2.7+ and Python 3.3+ interpreters, including current pypy and pypy3 releases.
-Use either of the following methods to install font-line on your system.
+font-line is built with Python and can be used on any system where the
+Python interpreter is installed. Use either of the following methods to
+install font-line on your system.
 
 pip Install
 ^^^^^^^^^^^
 
-The latest font-line release is available through the Python Package Index
+The latest release version is available through the Python Package Index
 and can be installed with pip:
 
 ::
