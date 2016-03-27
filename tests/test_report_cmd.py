@@ -172,3 +172,49 @@ def test_report_cmd_reportstring_ascent_descent(capsys):
     main()
     out, err = capsys.readouterr()
     assert "[hhea] Ascent to Descent: \t\t2384" in out
+
+
+def test_report_cmd_reportstring_winA_typoA(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "WinAscent to TypoAscender: \t345" in out
+
+
+def test_report_cmd_reportstring_ascent_typoA(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "Ascent to TypoAscender: \t345" in out
+
+
+def test_report_cmd_reportstring_winD_typoD(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "WinDescent to TypoDescender: \t-9" in out
+
+
+def test_report_cmd_reportstring_descent_typoD(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "Descent to TypoDescender: \t-9" in out
+
+
+def test_report_cmd_reportstring_typolinegap_to_upm(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "TypoLineGap / UPM: \t0.2" in out
+
