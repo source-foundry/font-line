@@ -1,14 +1,12 @@
 font-line |Build Status| |Build status|
 ---------------------------------------
 
-Project Source: `https://github.com/source-foundry/font-line <https://github.com/source-foundry/font-line>`__
-
 About
 ~~~~~
 
-font-line is a libre open source command line tool for font vertical
-metrics reporting and line spacing modifications. It currently supports
-reporting and modifications of ``.ttf`` and ``.otf`` font builds.
+font-line is a libre, open source command line tool for OpenType
+vertical metrics reporting and command line based font line spacing
+modifications. It currently supports ``.ttf`` and ``.otf`` font builds.
 
 Contents
 ~~~~~~~~
@@ -28,19 +26,29 @@ Contents
 Install
 ~~~~~~~
 
-font-line is built with Python and can be used on any system where the
-Python interpreter is installed. Use either of the following methods to
-install font-line on your system.
+font-line is built with Python and can be used on systems with Python
+2.7+ and Python 3.3+ interpreters, including current releases of pypy
+and pypy3. You can verify your installed Python version on the command
+line with the command:
+
+::
+
+    $ python --version
+
+Use either of the following methods to install font-line on your system.
 
 pip Install
 ^^^^^^^^^^^
 
-The latest release version is available through the Python Package Index
-and can be installed with pip:
+The latest font-line release is available through the Python Package
+Index and can be installed with pip:
 
 ::
 
     $ pip install font-line
+
+To upgrade to a new version of font-line after a pip install, use the
+command ``pip install --upgrade font-line``.
 
 Download Project Repository and Install
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -61,14 +69,17 @@ command:
 
     $ python setup.py install
 
+Follow the same instructions to upgrade to a new version of the
+application if you elect to install with this approach.
+
 Usage
 ~~~~~
 
-font-line works via sub-commands to the ``font-line`` executable. The
-following sub-commands are available:
+font-line works via sub-commands to the ``font-line`` command line
+executable. The following sub-commands are available:
 
 -  ``percent`` - modify the line spacing of a font to a percent of the
-   Ascender to Descender delta value
+   Ascender to Descender distance
 -  ``report`` - report OpenType metrics values for a font
 
 Usage of these sub-commands is described in detail below.
@@ -98,7 +109,15 @@ Enter one or more font path arguments to the command:
 
     $ font-line report [fontpath 1] <fontpath ...>
 
-Here is an example of the report generated with ``font-line report``:
+Here is an example of the report generated with the Hack typeface file
+``Hack-Regular.ttf`` using the command:
+
+::
+
+    $ font-line report Hack-Regular.ttf
+
+Example Font Vertical Metrics Report
+''''''''''''''''''''''''''''''''''''
 
 ::
 
@@ -131,12 +150,18 @@ Here is an example of the report generated with ``font-line report``:
     --- Ratio of TypoLineGap to UPM ---
     TypoLineGap / UPM:  0.2
 
+The report includes the font version string, a SHA-1 hash digest of the
+font file, and OpenType table metrics that are associated with line
+spacing in the font.
+
 Unix/Linux/OS X users can write this report to a file with the ``>``
 command line idiom:
 
 ::
 
     $ font-line report TheFont.ttf > font-report.txt
+
+You can modify ``font-report.txt`` to the file path of your choice.
 
 Vertical Metrics Modifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -150,7 +175,7 @@ This delta value will be abbreviated as TA:TD below.
 '''''''''''''''''''''''''''''
 
 Enter the desired percentage of the TA:TD metric as the first argument
-to the command. This should be formatted as an integer value. Then enter
+to the command. This should be *entered as an integer value*. Then enter
 one or more font paths to which you would like to apply your font
 metrics changes.
 
@@ -178,15 +203,15 @@ the font. See the Details section below for a description of the
 OpenType table modifications that occur when the application is used on
 a font file.
 
-You can inspect the new vertical metrics in the new font file with the
+You can inspect the vertical metrics in the new font file with the
 ``report`` subcommand (see Usage above).
 
 Details of Font Metrics Changes with ``percent`` Sub-Command
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-The interpretation of the multiple vertical metric values is platform
+The interpretation of these multiple vertical metric values is platform
 and application dependent. This has led to `debate over the 'best'
-approach to font line
+approach to cross-platform typeface line
 spacing <https://grahamwideman.wikispaces.com/Font+Vertical+Metrics>`__.
 The line spacing modification approach used in font-line is defined with
 a slightly modified version of Karsten Lücke's approach that is
@@ -222,6 +247,13 @@ assurance that this does not occur. We assume that the user is versed in
 these issues before use of the application and leave this testing to the
 designer / user before the modified fonts are used in a production
 setting.
+
+Issue Reporting
+~~~~~~~~~~~~~~~
+
+Please `submit a new issue
+report <https://github.com/source-foundry/font-line/issues/new>`__ on
+the project repository.
 
 Acknowledgments
 ~~~~~~~~~~~~~~~
