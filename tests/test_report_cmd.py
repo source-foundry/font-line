@@ -144,7 +144,7 @@ def test_report_cmd_reportstring_typolinegap(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[hhea] TypoLineGap: \t0" in out
+    assert "[hhea] TypoLineGap: \t410" in out
 
 
 def test_report_cmd_reportstring_typoA_typoD(capsys):
