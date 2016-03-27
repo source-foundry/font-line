@@ -145,3 +145,30 @@ def test_report_cmd_reportstring_typolinegap(capsys):
     main()
     out, err = capsys.readouterr()
     assert "[hhea] TypoLineGap: \t0" in out
+
+
+def test_report_cmd_reportstring_typoA_typoD(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[OS/2] TypoAscender to TypoDescender: \t2048" in out
+
+
+def test_report_cmd_reportstring_winA_winD(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[OS/2] WinAscent to WinDescent: \t2384" in out
+
+
+def test_report_cmd_reportstring_ascent_descent(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[hhea] Ascent to Descent: \t\t2384" in out
