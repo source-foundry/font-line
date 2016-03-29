@@ -21,14 +21,17 @@ def get_font_report(fontpath):
     hhea_ascent = tt['hhea'].__dict__['ascent']
     hhea_descent = tt['hhea'].__dict__['descent']
     hhea_linegap = tt['hhea'].__dict__['lineGap']
+    ymax = tt['head'].__dict__['yMax']
+    ymin = tt['head'].__dict__['yMin']
     units_per_em = tt['head'].__dict__['unitsPerEm']
-
-    linegap_to_upm = 1.0 * os2_typo_linegap / units_per_em
 
     # Calculated values
     os2_typo_total_height = os2_typo_ascender + -(os2_typo_descender)
     os2_win_total_height = os2_win_ascent + os2_win_descent
     hhea_total_height = hhea_ascent + -(hhea_descent)
+    typo_to_upm = 1.0 * (os2_typo_linegap + os2_typo_total_height) / units_per_em
+    winascdesc_to_upm = 1.0 * os2_win_total_height / units_per_em
+    hheaascdesc_to_upm = 1.0 * hhea_total_height / units_per_em
 
     # The file path header
     report_string = " \n"
@@ -41,7 +44,10 @@ def get_font_report(fontpath):
     # The SHA1 string
     report_string = report_string + "SHA1: " + get_sha1(fontpath) + "\n\n"
     # The vertical metrics strings
+    report_string = report_string + "--- Metrics ---" + "\n"
     report_string = report_string + "[head] Units per Em: \t" + str(units_per_em) + "\n"
+    report_string = report_string + "[head] yMax: \t\t" + str(ymax) + "\n"
+    report_string = report_string + "[head] yMin: \t\t" + str(ymin) + "\n"
     report_string = report_string + "[OS/2] TypoAscender: \t" + str(os2_typo_ascender) + "\n"
     report_string = report_string + "[OS/2] TypoDescender: \t" + str(os2_typo_descender) + "\n"
     report_string = report_string + "[OS/2] WinAscent: \t" + str(os2_win_ascent) + "\n"
@@ -59,8 +65,10 @@ def get_font_report(fontpath):
     report_string = report_string + "Ascent to TypoAscender: \t" + str(hhea_ascent - os2_typo_ascender) + "\n"
     report_string = report_string + "WinDescent to TypoDescender: \t" + str(os2_win_descent - -(os2_typo_descender)) + "\n"
     report_string = report_string + "Descent to TypoDescender: \t" + str(os2_typo_descender - hhea_descent) + "\n\n"
-    report_string = report_string + "--- Ratio of TypoLineGap to UPM ---" + "\n"
-    report_string = report_string + "TypoLineGap / UPM: \t" + str('{0:.3g}'.format(linegap_to_upm))
+    report_string = report_string + "--- Ratios ---" + "\n"
+    report_string = report_string + "(Typo Asc + Desc + Linegap) / UPM: \t" + str('{0:.3g}'.format(typo_to_upm)) + "\n"
+    report_string = report_string + "(winAsc + winDesc) / UPM: \t\t" + str('{0:.3g}'.format(winascdesc_to_upm)) + "\n"
+    report_string = report_string + "(hhea Asc + Desc) / UPM: \t\t" + str('{0:.3g}'.format(hheaascdesc_to_upm))
 
     return report_string
 

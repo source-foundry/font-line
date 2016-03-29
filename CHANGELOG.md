@@ -1,5 +1,14 @@
 ## Changelog
 
+### v0.5.3
+
+- added [head] yMax to report
+- added [head] yMin to report
+- added [OS/2] (TypoAscender + TypoDescender + TypoLineGap) / UPM to report
+- added [OS/2] (winAsc + winDesc) / UPM to report
+- added [OS/2] (hhea Asc + Desc) / UPM to report
+- removed [OS/2] TypoLineGap / UPM from the report
+
 ### v0.5.2
 
 - percent command: now forces entry of a percent integer value > 0, reports error & exits with attempts to enter values <= 0
