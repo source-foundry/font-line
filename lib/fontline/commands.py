@@ -78,12 +78,8 @@ def modify_linegap_percent(fontpath, percent):
 
         factor = 1.0 * int(percent) / 100
 
-        if os2_typo_descender < 0:
-            os2_typo_linegap = int(factor * (os2_typo_ascender + -(os2_typo_descender)))
-            total_height = os2_typo_ascender + -(os2_typo_descender) + os2_typo_linegap
-        else:
-            os2_typo_linegap = int(factor * (os2_typo_ascender + os2_typo_descender))
-            total_height = os2_typo_ascender + os2_typo_descender + os2_typo_linegap
+        os2_typo_linegap = int(factor * (os2_typo_ascender + -(os2_typo_descender)))
+        total_height = os2_typo_ascender + -(os2_typo_descender) + os2_typo_linegap
 
         hhea_ascent = int(os2_typo_ascender + 0.5 * os2_typo_linegap)
         hhea_descent = -(total_height - hhea_ascent)
@@ -101,7 +97,7 @@ def modify_linegap_percent(fontpath, percent):
 
         tt.save(get_linegap_percent_filepath(fontpath, percent))
         return True
-    except Exception as e:
+    except Exception as e:  # pragma: no cover
         stderr("[font-line] ERROR: Unable to modify the line spacing in the font file '" + fontpath + "'. " + str(e))
         sys.exit(1)
 
