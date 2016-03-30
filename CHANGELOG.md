@@ -1,5 +1,9 @@
 ## Changelog
 
+### v0.5.4
+
+- fix for font argument file path bug OSX/Linux/Win (issue report #3)
+
 ### v0.5.3
 
 - added [head] yMax to report
