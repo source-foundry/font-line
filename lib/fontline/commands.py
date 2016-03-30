@@ -112,8 +112,9 @@ def modify_linegap_percent(fontpath, percent):
 
 
 def get_linegap_percent_filepath(fontpath, percent):
-    font_basename = os.path.basename(fontpath)
-    font_dirname = os.path.dirname(fontpath)
+    fontpath_list = os.path.split(fontpath)
+    font_dirname = fontpath_list[0]
+    font_basename = fontpath_list[1]
     basepath_list = font_basename.split(".")
     outfile_basename = basepath_list[0] + "-linegap" + percent + "." + basepath_list[1]
     return os.path.join(font_dirname, outfile_basename)
