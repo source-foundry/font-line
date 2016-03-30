@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import os.path
 
 from fontTools import ttLib
 from fontline.utilities import get_sha1
@@ -111,5 +112,8 @@ def modify_linegap_percent(fontpath, percent):
 
 
 def get_linegap_percent_filepath(fontpath, percent):
-    path_list = fontpath.split(".")
-    return path_list[0] + "-linegap" + percent + "." + path_list[1]
+    font_basename = os.path.basename(fontpath)
+    font_dirname = os.path.dirname(fontpath)
+    basepath_list = font_basename.split(".")
+    outfile_basename = basepath_list[0] + "-linegap" + percent + "." + basepath_list[1]
+    return os.path.join(font_dirname, outfile_basename)
