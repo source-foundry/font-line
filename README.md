@@ -71,6 +71,8 @@ The following OpenType vertical metrics values and calculated values derived fro
 - [hhea] Descent
 - [hhea] lineGap
 - [head] unitsPerEm
+- [head] yMax
+- [head] yMin
 
 ##### `report` Sub-Command Usage
 
