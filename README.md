@@ -13,6 +13,12 @@ font-line is a libre, open source command line tool for OpenType vertical metric
 - [Changelog](https://github.com/source-foundry/font-line/blob/master/CHANGELOG.md)
 - [License](https://github.com/source-foundry/font-line/blob/master/docs/LICENSE)
 
+### Quickstart
+
+- Install: `$ pip install font-line`
+- Metrics Report: `$ font-line report [font path]`
+- Modify line spacing: `$font-line percent [integer %] [font path]`
+
 ### Install
 
 font-line is built with Python and can be used on systems with Python 2.7+ and Python 3.3+ interpreters, including current releases of pypy and pypy3. You can verify your installed Python version on the command line with the command: 
