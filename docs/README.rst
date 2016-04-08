@@ -2,7 +2,10 @@ font-line |Build Status| |Build status| |codecov.io|
 ----------------------------------------------------
 
 Source Repository: `https://github.com/source-foundry/font-line <https://github.com/source-foundry/font-line>`__
+
 Issue Tracker and Reporting: `https://github.com/source-foundry/font-line/issues <https://github.com/source-foundry/font-line/issues>`__
+
+License: MIT
 
 
 About
