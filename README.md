@@ -17,7 +17,8 @@ font-line is a libre, open source command line tool for OpenType vertical metric
 
 - Install: `$ pip install font-line`
 - Metrics Report: `$ font-line report [font path]`
-- Modify line spacing: `$font-line percent [integer %] [font path]`
+- Modify line spacing: `$ font-line percent [integer %] [font path]`
+- Help: `$ font-line --help`
 
 ### Install
 
