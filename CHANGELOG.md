@@ -1,5 +1,12 @@
 ## Changelog
 
+### v0.6.0
+
+- modified percent command calculations to maintain vertical metrics approaches in the original font design
+- added vertical metrics modification support for fonts designed with the following vertical metrics approaches:
+    - Google style metrics where TypoLinegap = hhea linegap = 0, internal leading is present in [OS/2] TypoAsc/TypoDesc, [hhea] Asc/Desc, [OS/2] winAsc/winDesc
+    - Adobe style metrics where TypoLinegap = hhea linegap = 0, TypoAsc - TypoDesc = UPM, internal leading in [hhea] Asc/Desc & [OS/2] winAsc/winDesc
+
 ### v0.5.4
 
 - fix for font argument file path bug OSX/Linux/Win (issue report #3)
