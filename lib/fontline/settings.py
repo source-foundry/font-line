@@ -10,8 +10,8 @@ app_name = 'font-line'
 # Version Number
 # ------------------------------------------------------------------------------
 major_version = "0"
-minor_version = "5"
-patch_version = "4"
+minor_version = "6"
+patch_version = "0"
 
 # ------------------------------------------------------------------------------
 # Help String
