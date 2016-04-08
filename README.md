@@ -21,11 +21,11 @@ font-line is a libre, open source command line tool for OpenType vertical metric
 
 ### Install
 
-font-line is built with Python and can be used on systems with Python 2.7+ and Python 3.3+ interpreters, including current releases of pypy and pypy3. You can verify your installed Python version on the command line with the command: 
+font-line is built with Python and can be used on systems with Python 2.7+ and Python 3.3+ interpreters, including current releases of pypy and pypy3. You can verify your installed Python version on the command line with the command:
 
 ```
 $ python --version
-```  
+```
 
 Use either of the following methods to install font-line on your system.
 
@@ -86,7 +86,7 @@ Enter one or more font path arguments to the command:
 
 ```
 $ font-line report [fontpath 1] <fontpath ...>
-``` 
+```
 
 Here is an example of the report generated with the Hack typeface file `Hack-Regular.ttf` using the command:
 
@@ -139,7 +139,7 @@ Unix/Linux/OS X users can write this report to a file with the `>` command line 
 $ font-line report TheFont.ttf > font-report.txt
 ```
 
-You can modify `font-report.txt` to the file path of your choice.
+You can modify the `font-report.txt` file path above to the file path string of your choice.
 
 #### Vertical Metrics Modifications
 
