@@ -1,5 +1,9 @@
-font-line |Build Status| |Build status|
----------------------------------------
+font-line |Build Status| |Build status| |codecov.io|
+----------------------------------------------------
+
+Source Repository: `https://github.com/source-foundry/font-line <https://github.com/source-foundry/font-line>`__
+Issue Tracker and Reporting: `https://github.com/source-foundry/font-line/issues <https://github.com/source-foundry/font-line/issues>`__
+
 
 About
 ~~~~~
@@ -22,6 +26,13 @@ Contents
 
 -  `Changelog <https://github.com/source-foundry/font-line/blob/master/CHANGELOG.md>`__
 -  `License <https://github.com/source-foundry/font-line/blob/master/docs/LICENSE>`__
+
+Quickstart
+~~~~~~~~~~
+
+-  Install: ``$ pip install font-line``
+-  Metrics Report: ``$ font-line report [font path]``
+-  Modify line spacing: ``$font-line percent [integer %] [font path]``
 
 Install
 ~~~~~~~
@@ -99,6 +110,8 @@ derived from these data are displayed with the ``report`` sub-command:
 -  [hhea] Descent
 -  [hhea] lineGap
 -  [head] unitsPerEm
+-  [head] yMax
+-  [head] yMin
 
 ``report`` Sub-Command Usage
 ''''''''''''''''''''''''''''
@@ -122,33 +135,38 @@ Example Font Vertical Metrics Report
 ::
 
     === Hack-Regular.ttf ===
-    Version 2.019; ttfautohint (v1.4.1) -l 4 -r 80 -G 350 -x 0 -H 181 -D latn -f latn -w G -W -t -X ""
-    SHA1: 3d5f3ccfa40406ad252b76a2219cb629df8e5ab3
+    Version 2.020;DEV-03192016;
+    SHA1: 638f033cc1b6a21597359278bee62cf7e96557ff
 
+    --- Metrics ---
     [head] Units per Em:    2048
+    [head] yMax:            2001
+    [head] yMin:            -573
     [OS/2] TypoAscender:    1556
     [OS/2] TypoDescender:   -492
-    [OS/2] WinAscent:   1901
-    [OS/2] WinDescent:  483
-    [hhea] Ascent:      1901
-    [hhea] Descent:     -483
+    [OS/2] WinAscent:       1901
+    [OS/2] WinDescent:       483
+    [hhea] Ascent:          1901
+    [hhea] Descent:         -483
 
-    [hhea] LineGap:     0
+    [hhea] LineGap:           0
     [OS/2] TypoLineGap:     410
 
     --- Height Calculations by Table Values ---
     [OS/2] TypoAscender to TypoDescender:   2048
-    [OS/2] WinAscent to WinDescent:     2384
-    [hhea] Ascent to Descent:       2384
+    [OS/2] WinAscent to WinDescent:         2384
+    [hhea] Ascent to Descent:               2384
 
     --- Delta Values ---
-    WinAscent to TypoAscender:  345
-    Ascent to TypoAscender:     345
-    WinDescent to TypoDescender:    -9
-    Descent to TypoDescender:   -9
+    WinAscent to TypoAscender:      345
+    Ascent to TypoAscender:         345
+    WinDescent to TypoDescender:     -9
+    Descent to TypoDescender:        -9
 
-    --- Ratio of TypoLineGap to UPM ---
-    TypoLineGap / UPM:  0.2
+    --- Ratios ---
+    (Typo Asc + Desc + Linegap) / UPM:  1.2
+    (winAsc + winDesc) / UPM:           1.16
+    (hhea Asc + Desc) / UPM:            1.16
 
 The report includes the font version string, a SHA-1 hash digest of the
 font file, and OpenType table metrics that are associated with line
@@ -167,24 +185,23 @@ Vertical Metrics Modifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 font-line supports automated line spacing modifications to a
-user-defined percentage of the TypoAscender to TypoDescender metric
-(often defined with the same value as the font units per em metric).
-This delta value will be abbreviated as TA:TD below.
+user-defined percentage of the units per em metric. This value will be
+abbreviated as UPM below.
 
 ``percent`` Sub-Command Usage
 '''''''''''''''''''''''''''''
 
-Enter the desired percentage of the TA:TD metric as the first argument
-to the command. This should be *entered as an integer value*. Then enter
-one or more font paths to which you would like to apply your font
-metrics changes.
+Enter the desired percentage of the UPM as the first argument to the
+command. This should be *entered as an integer value*. Then enter one or
+more font paths to which you would like to apply your font metrics
+changes.
 
 ::
 
     $ font-line percent [percent change] [fontpath 1] <fontpath ...>
 
-A common default value used by typeface designers is 20%. To modify a
-font on the path ``TheFont.ttf`` to 20% of the TA:TD metric, you would
+A common default value used by typeface designers is 20% UPM. To modify
+a font on the path ``TheFont.ttf`` to 20% of the UPM metric, you would
 enter the following command:
 
 ::
@@ -204,32 +221,71 @@ OpenType table modifications that occur when the application is used on
 a font file.
 
 You can inspect the vertical metrics in the new font file with the
-``report`` subcommand (see Usage above).
+``report`` sub-command (see Usage above).
 
 Details of Font Metrics Changes with ``percent`` Sub-Command
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-The interpretation of these multiple vertical metric values is platform
-and application dependent. This has led to `debate over the 'best'
-approach to cross-platform typeface line
-spacing <https://grahamwideman.wikispaces.com/Font+Vertical+Metrics>`__.
-The line spacing modification approach used in font-line is defined with
-a slightly modified version of Karsten Lücke's approach that is
-described `here <http://www.kltf.de/downloads/FontMetrics-kltf.pdf>`__.
+The interpretation and display of these multiple vertical metrics values
+is platform and application dependent. `There is no broadly accepted
+"best"
+approach <https://github.com/source-foundry/font-line/issues/2>`__. As
+such, font-line attempts to preserve the original metrics design in the
+font when modifications are made with the ``percent`` sub-command.
 
-*The following values are preserved from the original font design*:
+font-line currently supports three commonly used vertical metrics
+approaches.
 
--  [OS/2] TypoAscender
--  [OS/2] TypoDescender
+**Vertical Metrics Approach 1**:
 
-We assume that the TypoAscender - TypoDescender delta value is
-equivalent to the UPM size, and therefore that the percent TA:TD value
-is equivalent to percent UPM when line spacing is defined.
+Where metrics are defined as:
 
-*Changes to OpenType metrics values in the font are defined as*:
+-  [OS/2] TypoLinegap = 0
+-  [hhea] linegap = 0
+-  [OS/2] TypoAscender = [OS/2] winAscent = [hhea] Ascent
+-  [OS/2] TypoDescender = [OS/2] winDescent = [hhea] Descent
 
--  [hhea] lineGap is always set to 0
--  [OS/2] TypoLineGap = x% \* TA:TD value
+font-line calculates a delta value for the total expected height based
+upon the % UPM value defined on the command line. The difference between
+this value and the observed number of units that span the [OS/2]
+winAscent to winDescent values is divided by half and then added to (for
+increased line spacing) or subtracted from (for decreased line spacing)
+each of the three sets of Ascender/Descender values in the font. The
+[OS/2] TypoLinegap and [hhea] linegap values are not modified.
+
+**Vertical Metrics Approach 2**
+
+Where metrics are defined as:
+
+-  [OS/2] TypoLinegap = 0
+-  [hhea] linegap = 0
+-  [OS/2] TypoAscender + TypoDescender = UPM
+-  [OS/2] winAscent = [hhea] Ascent
+-  [OS/2] winDescent = [hhea] Descent
+
+font-line calculates a delta value for the total expected height based
+upon the % UPM value defined on the command line. The difference between
+this value and the observed number of units that span the [OS/2]
+winAscent to winDescent values is divided by half and then added to (for
+increased line spacing) or subtracted from (for decreased line spacing)
+the [OS/2] winAsc/winDesc and [hhea] Asc/Desc values. The [OS/2]
+TypoAsc/TypoDesc values are not modified and maintain a definition of
+size = UPM value. The [OS/2] TypoLinegap and [hhea] linegap values are
+not modified.
+
+**Vertical Metrics Approach 3**
+
+Where metrics are defined as:
+
+-  [OS/2] TypoAscender + TypoDescender = UPM
+-  [OS/2] TypoLinegap is set to leading value
+-  [hhea] linegap = 0
+-  [OS/2] winAscent = [hhea] Ascent
+-  [OS/2] winDescent = [hhea] Descent
+
+*Changes to the metrics values in the font are defined as*:
+
+-  [OS/2] TypoLineGap = x% \* UPM value
 -  [hhea] Ascent = [OS/2] TypoAscender + 0.5(modified TypoLineGap)
 -  [hhea] Descent = [OS/2] TypoDescender + 0.5(modified TypoLineGap)
 -  [OS/2] WinAscent = [OS/2] TypoAscender + 0.5(modified TypoLineGap)
@@ -239,14 +295,17 @@ Note that the internal leading modifications are split evenly across
 [hhea] Ascent & Descent values, and across [OS/2] WinAscent & WinDescent
 values. We add half of the new [OS/2] TypoLineGap value to the original
 [OS/2] TypoAscender or TypoDescender in order to define these new
-metrics properties.
+metrics properties. The [hhea] linegap value is always defined as zero.
 
-These newly defined properties can lead to clipping of glyph components
-if not properly defined. There are no tests in font-line to provide
-assurance that this does not occur. We assume that the user is versed in
-these issues before use of the application and leave this testing to the
-designer / user before the modified fonts are used in a production
-setting.
+Important
+^^^^^^^^^
+
+The newly defined vertical metrics values can lead to clipping of glyph
+components if not properly defined. There are no tests in font-line to
+provide assurance that this does not occur. We assume that the user is
+versed in these issues before use of the application and leave this
+testing to the designer / user before the modified fonts are used in a
+production setting.
 
 Issue Reporting
 ~~~~~~~~~~~~~~~
@@ -265,3 +324,5 @@ font-line is built with the fantastic
    :target: https://travis-ci.org/source-foundry/font-line
 .. |Build status| image:: https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true
    :target: https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master
+.. |codecov.io| image:: https://codecov.io/github/source-foundry/font-line/coverage.svg?branch=master
+   :target: https://codecov.io/github/source-foundry/font-line?branch=master
