@@ -81,23 +81,58 @@ def modify_linegap_percent(fontpath, percent):
         # get observed start values from the font
         os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
         os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
+        os2_typo_linegap = tt['OS/2'].__dict__['sTypoLineGap']
+        hhea_ascent = tt['hhea'].__dict__['ascent']
+        hhea_descent = tt['hhea'].__dict__['descent']
+        units_per_em = tt['head'].__dict__['unitsPerEm']
 
-        # redefine hhea linegap to 0
-        hhea_linegap = 0
+        # calculate necessary delta values
+        os2_typo_ascdesc_delta = os2_typo_ascender + -(os2_typo_descender)
+        hhea_ascdesc_delta = hhea_ascent + -(hhea_descent)
 
+        # define percent UPM from command line request
         factor = 1.0 * int(percent) / 100
 
-        os2_typo_linegap = int(factor * (os2_typo_ascender + -(os2_typo_descender)))
-        total_height = os2_typo_ascender + -(os2_typo_descender) + os2_typo_linegap
+        # define line spacing units
+        line_spacing_units = int(factor * units_per_em)
 
-        hhea_ascent = int(os2_typo_ascender + 0.5 * os2_typo_linegap)
-        hhea_descent = -(total_height - hhea_ascent)
+        # define total height as UPM + line spacing units
+        total_height = line_spacing_units + units_per_em
 
-        os2_win_ascent = hhea_ascent
-        os2_win_descent = -hhea_descent
+        # height calculations for adjustments
+        delta_height = total_height - hhea_ascdesc_delta
+        upper_lower_add_units = int(0.5 * delta_height)
 
-        # define updated values
+        # redefine hhea linegap to 0 in all cases
+        hhea_linegap = 0
+
+        # Define metrics based upon original design approach in the font
+        # Google metrics approach
+        if os2_typo_linegap == 0 and (os2_typo_ascdesc_delta > units_per_em):
+            # define values
+            os2_typo_ascender += upper_lower_add_units
+            os2_typo_descender -= upper_lower_add_units
+            hhea_ascent += upper_lower_add_units
+            hhea_descent -= upper_lower_add_units
+            os2_win_ascent = hhea_ascent
+            os2_win_descent = -hhea_descent
+        # Adobe metrics approach
+        elif os2_typo_linegap == 0 and (os2_typo_ascdesc_delta == units_per_em):
+            hhea_ascent += upper_lower_add_units
+            hhea_descent -= upper_lower_add_units
+            os2_win_ascent = hhea_ascent
+            os2_win_descent = -hhea_descent
+        else:
+            os2_typo_linegap = line_spacing_units
+            hhea_ascent = int(os2_typo_ascender + 0.5 * os2_typo_linegap)
+            hhea_descent = -(total_height - hhea_ascent)
+            os2_win_ascent = hhea_ascent
+            os2_win_descent = -hhea_descent
+
+        # define updated values from above calculations
         tt['hhea'].__dict__['lineGap'] = hhea_linegap
+        tt['OS/2'].__dict__['sTypoAscender'] = os2_typo_ascender
+        tt['OS/2'].__dict__['sTypoDescender'] = os2_typo_descender
         tt['OS/2'].__dict__['sTypoLineGap'] = os2_typo_linegap
         tt['OS/2'].__dict__['usWinAscent'] = os2_win_ascent
         tt['OS/2'].__dict__['usWinDescent'] = os2_win_descent

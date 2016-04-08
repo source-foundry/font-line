@@ -18,9 +18,8 @@ from fontline.commands import get_font_report, modify_linegap_percent, get_lineg
 from fontline.utilities import file_exists, is_supported_filetype
 
 # TODO: support integer addition and subtraction to the metrics values through new sub-commands
-# TODO: support .woff and .woff2 file types?
 # TODO: JSON formatted metrics output
-# TODO: autocorrect command?
+# TODO: add report line items for 'exceeds ymax/ymin values' across each of the three metrics
 
 
 def main():
