@@ -35,44 +35,49 @@ def get_font_report(fontpath):
     hheaascdesc_to_upm = 1.0 * hhea_total_height / units_per_em
 
     # The file path header
-    report_string = " \n"
-    report_string = report_string + "=== " + fontpath + " ===\n"
+    report = [" "]
+    report.append("=== " + fontpath + " ===")
     namerecord_list = tt['name'].names
     # The version string
     for needle in namerecord_list:
         if needle.langID == 0 and needle.nameID == 5:
-            report_string += needle.toStr() + "\n"
+            report.append(needle.toStr())
             break
     # The SHA1 string
-    report_string = report_string + "SHA1: " + get_sha1(fontpath) + "\n\n"
+    report.append("SHA1: " + get_sha1(fontpath))
+    report.append("")
     # The vertical metrics strings
-    report_string = report_string + "--- Metrics ---" + "\n"
-    report_string = report_string + "[head] Units per Em: \t" + str(units_per_em) + "\n"
-    report_string = report_string + "[head] yMax: \t\t" + str(ymax) + "\n"
-    report_string = report_string + "[head] yMin: \t\t" + str(ymin) + "\n"
-    report_string = report_string + "[OS/2] TypoAscender: \t" + str(os2_typo_ascender) + "\n"
-    report_string = report_string + "[OS/2] TypoDescender: \t" + str(os2_typo_descender) + "\n"
-    report_string = report_string + "[OS/2] WinAscent: \t" + str(os2_win_ascent) + "\n"
-    report_string = report_string + "[OS/2] WinDescent: \t" + str(os2_win_descent) + "\n"
-    report_string = report_string + "[hhea] Ascent: \t\t" + str(hhea_ascent) + "\n"
-    report_string = report_string + "[hhea] Descent: \t" + str(hhea_descent) + "\n\n"
-    report_string = report_string + "[hhea] LineGap: \t" + str(hhea_linegap) + "\n"
-    report_string = report_string + "[OS/2] TypoLineGap: \t" + str(os2_typo_linegap) + "\n\n"
-    report_string = report_string + "--- Height Calculations by Table Values ---" + "\n"
-    report_string = report_string + "[OS/2] TypoAscender to TypoDescender: \t" + str(os2_typo_total_height) + "\n"
-    report_string = report_string + "[OS/2] WinAscent to WinDescent: \t" + str(os2_win_total_height) + "\n"
-    report_string = report_string + "[hhea] Ascent to Descent: \t\t" + str(hhea_total_height) + "\n\n"
-    report_string = report_string + "--- Delta Values ---" + "\n"
-    report_string = report_string + "WinAscent to TypoAscender: \t" + str(os2_win_ascent - os2_typo_ascender) + "\n"
-    report_string = report_string + "Ascent to TypoAscender: \t" + str(hhea_ascent - os2_typo_ascender) + "\n"
-    report_string = report_string + "WinDescent to TypoDescender: \t" + str(os2_win_descent - -(os2_typo_descender)) + "\n"
-    report_string = report_string + "Descent to TypoDescender: \t" + str(os2_typo_descender - hhea_descent) + "\n\n"
-    report_string = report_string + "--- Ratios ---" + "\n"
-    report_string = report_string + "(Typo Asc + Desc + Linegap) / UPM: \t" + str('{0:.3g}'.format(typo_to_upm)) + "\n"
-    report_string = report_string + "(winAsc + winDesc) / UPM: \t\t" + str('{0:.3g}'.format(winascdesc_to_upm)) + "\n"
-    report_string = report_string + "(hhea Asc + Desc) / UPM: \t\t" + str('{0:.3g}'.format(hheaascdesc_to_upm))
+    report.append("--- Metrics ---")
+    report.append("[head] Units per Em: \t{}".format(units_per_em))
+    report.append("[head] yMax: \t\t{}".format(ymax))
+    report.append("[head] yMin: \t\t{}".format(ymin))
+    report.append("[OS/2] TypoAscender: \t{}".format(os2_typo_ascender))
+    report.append("[OS/2] TypoDescender: \t{}".format(os2_typo_descender))
+    report.append("[OS/2] WinAscent: \t{}".format(os2_win_ascent))
+    report.append("[OS/2] WinDescent: \t{}".format(os2_win_descent))
+    report.append("[hhea] Ascent: \t\t{}".format(hhea_ascent))
+    report.append("[hhea] Descent: \t{}".format(hhea_descent))
+    report.append("")
+    report.append("[hhea] LineGap: \t{}".format(hhea_linegap))
+    report.append("[OS/2] TypoLineGap: \t{}".format(os2_typo_linegap))
+    report.append("")
+    report.append("--- Height Calculations by Table Values ---")
+    report.append("[OS/2] TypoAscender to TypoDescender: \t{}".format(os2_typo_total_height))
+    report.append("[OS/2] WinAscent to WinDescent: \t{}".format(os2_win_total_height))
+    report.append("[hhea] Ascent to Descent: \t\t{}".format(hhea_total_height))
+    report.append("")
+    report.append("--- Delta Values ---")
+    report.append("WinAscent to TypoAscender: \t{}".format(os2_win_ascent - os2_typo_ascender))
+    report.append("Ascent to TypoAscender: \t{}".format(hhea_ascent - os2_typo_ascender))
+    report.append("WinDescent to TypoDescender: \t{}".format(os2_win_descent - -(os2_typo_descender)))
+    report.append("Descent to TypoDescender: \t{}".format(os2_typo_descender - hhea_descent))
+    report.append("")
+    report.append("--- Ratios ---")
+    report.append("(Typo Asc + Desc + Linegap) / UPM: \t{0:.3g}".format(typo_to_upm))
+    report.append("(winAsc + winDesc) / UPM: \t\t{0:.3g}".format(winascdesc_to_upm))
+    report.append("(hhea Asc + Desc) / UPM: \t\t{0:.3g}".format(hheaascdesc_to_upm))
 
-    return report_string
+    return "\n".join(report)
 
 
 def modify_linegap_percent(fontpath, percent):
