@@ -120,15 +120,15 @@ def test_percent_cmd_ttf_file_10_percent_default_approach(capsys):
 
         tt = ttLib.TTFont(newfont_path)
 
-        os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
-        os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
-        os2_win_ascent = tt['OS/2'].__dict__['usWinAscent']
-        os2_win_descent = tt['OS/2'].__dict__['usWinDescent']
-        os2_typo_linegap = tt['OS/2'].__dict__['sTypoLineGap']
-        hhea_ascent = tt['hhea'].__dict__['ascent']
-        hhea_descent = tt['hhea'].__dict__['descent']
-        hhea_linegap = tt['hhea'].__dict__['lineGap']
-        units_per_em = tt['head'].__dict__['unitsPerEm']
+        os2_typo_ascender = tt['OS/2'].sTypoAscender
+        os2_typo_descender = tt['OS/2'].sTypoDescender
+        os2_win_ascent = tt['OS/2'].usWinAscent
+        os2_win_descent = tt['OS/2'].usWinDescent
+        os2_typo_linegap = tt['OS/2'].sTypoLineGap
+        hhea_ascent = tt['hhea'].ascent
+        hhea_descent = tt['hhea'].descent
+        hhea_linegap = tt['hhea'].lineGap
+        units_per_em = tt['head'].unitsPerEm
 
         assert os2_typo_ascender == 1556
         assert os2_typo_descender == -492
@@ -166,15 +166,15 @@ def test_percent_cmd_otf_file_10_percent_default_approach(capsys):
 
         tt = ttLib.TTFont(newfont_path)
 
-        os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
-        os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
-        os2_win_ascent = tt['OS/2'].__dict__['usWinAscent']
-        os2_win_descent = tt['OS/2'].__dict__['usWinDescent']
-        os2_typo_linegap = tt['OS/2'].__dict__['sTypoLineGap']
-        hhea_ascent = tt['hhea'].__dict__['ascent']
-        hhea_descent = tt['hhea'].__dict__['descent']
-        hhea_linegap = tt['hhea'].__dict__['lineGap']
-        units_per_em = tt['head'].__dict__['unitsPerEm']
+        os2_typo_ascender = tt['OS/2'].sTypoAscender
+        os2_typo_descender = tt['OS/2'].sTypoDescender
+        os2_win_ascent = tt['OS/2'].usWinAscent
+        os2_win_descent = tt['OS/2'].usWinDescent
+        os2_typo_linegap = tt['OS/2'].sTypoLineGap
+        hhea_ascent = tt['hhea'].ascent
+        hhea_descent = tt['hhea'].descent
+        hhea_linegap = tt['hhea'].lineGap
+        units_per_em = tt['head'].unitsPerEm
 
         assert os2_typo_ascender == 1556
         assert os2_typo_descender == -492
@@ -212,15 +212,15 @@ def test_percent_cmd_ttf_file_30_percent_default_approach(capsys):
 
         tt = ttLib.TTFont(newfont_path)
 
-        os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
-        os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
-        os2_win_ascent = tt['OS/2'].__dict__['usWinAscent']
-        os2_win_descent = tt['OS/2'].__dict__['usWinDescent']
-        os2_typo_linegap = tt['OS/2'].__dict__['sTypoLineGap']
-        hhea_ascent = tt['hhea'].__dict__['ascent']
-        hhea_descent = tt['hhea'].__dict__['descent']
-        hhea_linegap = tt['hhea'].__dict__['lineGap']
-        units_per_em = tt['head'].__dict__['unitsPerEm']
+        os2_typo_ascender = tt['OS/2'].sTypoAscender
+        os2_typo_descender = tt['OS/2'].sTypoDescender
+        os2_win_ascent = tt['OS/2'].usWinAscent
+        os2_win_descent = tt['OS/2'].usWinDescent
+        os2_typo_linegap = tt['OS/2'].sTypoLineGap
+        hhea_ascent = tt['hhea'].ascent
+        hhea_descent = tt['hhea'].descent
+        hhea_linegap = tt['hhea'].lineGap
+        units_per_em = tt['head'].unitsPerEm
 
         assert os2_typo_ascender == 1556
         assert os2_typo_descender == -492
@@ -260,15 +260,15 @@ def test_percent_cmd_ttf_file_10_percent_google_approach(capsys):
 
         tt = ttLib.TTFont(newfont_path)
 
-        os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
-        os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
-        os2_win_ascent = tt['OS/2'].__dict__['usWinAscent']
-        os2_win_descent = tt['OS/2'].__dict__['usWinDescent']
-        os2_typo_linegap = tt['OS/2'].__dict__['sTypoLineGap']
-        hhea_ascent = tt['hhea'].__dict__['ascent']
-        hhea_descent = tt['hhea'].__dict__['descent']
-        hhea_linegap = tt['hhea'].__dict__['lineGap']
-        units_per_em = tt['head'].__dict__['unitsPerEm']
+        os2_typo_ascender = tt['OS/2'].sTypoAscender
+        os2_typo_descender = tt['OS/2'].sTypoDescender
+        os2_win_ascent = tt['OS/2'].usWinAscent
+        os2_win_descent = tt['OS/2'].usWinDescent
+        os2_typo_linegap = tt['OS/2'].sTypoLineGap
+        hhea_ascent = tt['hhea'].ascent
+        hhea_descent = tt['hhea'].descent
+        hhea_linegap = tt['hhea'].lineGap
+        units_per_em = tt['head'].unitsPerEm
 
         assert os2_typo_ascender == 885
         assert os2_typo_descender == -215
@@ -306,15 +306,15 @@ def test_percent_cmd_ttf_file_30_percent_google_approach(capsys):
 
         tt = ttLib.TTFont(newfont_path)
 
-        os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
-        os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
-        os2_win_ascent = tt['OS/2'].__dict__['usWinAscent']
-        os2_win_descent = tt['OS/2'].__dict__['usWinDescent']
-        os2_typo_linegap = tt['OS/2'].__dict__['sTypoLineGap']
-        hhea_ascent = tt['hhea'].__dict__['ascent']
-        hhea_descent = tt['hhea'].__dict__['descent']
-        hhea_linegap = tt['hhea'].__dict__['lineGap']
-        units_per_em = tt['head'].__dict__['unitsPerEm']
+        os2_typo_ascender = tt['OS/2'].sTypoAscender
+        os2_typo_descender = tt['OS/2'].sTypoDescender
+        os2_win_ascent = tt['OS/2'].usWinAscent
+        os2_win_descent = tt['OS/2'].usWinDescent
+        os2_typo_linegap = tt['OS/2'].sTypoLineGap
+        hhea_ascent = tt['hhea'].ascent
+        hhea_descent = tt['hhea'].descent
+        hhea_linegap = tt['hhea'].lineGap
+        units_per_em = tt['head'].unitsPerEm
 
         assert os2_typo_ascender == 985
         assert os2_typo_descender == -315
@@ -355,15 +355,15 @@ def test_percent_cmd_ttf_file_10_percent_adobe_approach(capsys):
 
         tt = ttLib.TTFont(newfont_path)
 
-        os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
-        os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
-        os2_win_ascent = tt['OS/2'].__dict__['usWinAscent']
-        os2_win_descent = tt['OS/2'].__dict__['usWinDescent']
-        os2_typo_linegap = tt['OS/2'].__dict__['sTypoLineGap']
-        hhea_ascent = tt['hhea'].__dict__['ascent']
-        hhea_descent = tt['hhea'].__dict__['descent']
-        hhea_linegap = tt['hhea'].__dict__['lineGap']
-        units_per_em = tt['head'].__dict__['unitsPerEm']
+        os2_typo_ascender = tt['OS/2'].sTypoAscender
+        os2_typo_descender = tt['OS/2'].sTypoDescender
+        os2_win_ascent = tt['OS/2'].usWinAscent
+        os2_win_descent = tt['OS/2'].usWinDescent
+        os2_typo_linegap = tt['OS/2'].sTypoLineGap
+        hhea_ascent = tt['hhea'].ascent
+        hhea_descent = tt['hhea'].descent
+        hhea_linegap = tt['hhea'].lineGap
+        units_per_em = tt['head'].unitsPerEm
 
         assert os2_typo_ascender == 750
         assert os2_typo_descender == -250
@@ -401,15 +401,15 @@ def test_percent_cmd_ttf_file_30_percent_adobe_approach(capsys):
 
         tt = ttLib.TTFont(newfont_path)
 
-        os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
-        os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
-        os2_win_ascent = tt['OS/2'].__dict__['usWinAscent']
-        os2_win_descent = tt['OS/2'].__dict__['usWinDescent']
-        os2_typo_linegap = tt['OS/2'].__dict__['sTypoLineGap']
-        hhea_ascent = tt['hhea'].__dict__['ascent']
-        hhea_descent = tt['hhea'].__dict__['descent']
-        hhea_linegap = tt['hhea'].__dict__['lineGap']
-        units_per_em = tt['head'].__dict__['unitsPerEm']
+        os2_typo_ascender = tt['OS/2'].sTypoAscender
+        os2_typo_descender = tt['OS/2'].sTypoDescender
+        os2_win_ascent = tt['OS/2'].usWinAscent
+        os2_win_descent = tt['OS/2'].usWinDescent
+        os2_typo_linegap = tt['OS/2'].sTypoLineGap
+        hhea_ascent = tt['hhea'].ascent
+        hhea_descent = tt['hhea'].descent
+        hhea_linegap = tt['hhea'].lineGap
+        units_per_em = tt['head'].unitsPerEm
 
         assert os2_typo_ascender == 750
         assert os2_typo_descender == -250
