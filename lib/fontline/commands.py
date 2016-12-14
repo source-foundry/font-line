@@ -14,17 +14,17 @@ def get_font_report(fontpath):
     tt = ttLib.TTFont(fontpath)
 
     # Vertical metrics values as integers
-    os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
-    os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
-    os2_win_ascent = tt['OS/2'].__dict__['usWinAscent']
-    os2_win_descent = tt['OS/2'].__dict__['usWinDescent']
-    os2_typo_linegap = tt['OS/2'].__dict__['sTypoLineGap']
-    hhea_ascent = tt['hhea'].__dict__['ascent']
-    hhea_descent = tt['hhea'].__dict__['descent']
-    hhea_linegap = tt['hhea'].__dict__['lineGap']
-    ymax = tt['head'].__dict__['yMax']
-    ymin = tt['head'].__dict__['yMin']
-    units_per_em = tt['head'].__dict__['unitsPerEm']
+    os2_typo_ascender = tt['OS/2'].sTypoAscender
+    os2_typo_descender = tt['OS/2'].sTypoDescender
+    os2_win_ascent = tt['OS/2'].usWinAscent
+    os2_win_descent = tt['OS/2'].usWinDescent
+    os2_typo_linegap = tt['OS/2'].sTypoLineGap
+    hhea_ascent = tt['hhea'].ascent
+    hhea_descent = tt['hhea'].descent
+    hhea_linegap = tt['hhea'].lineGap
+    ymax = tt['head'].yMax
+    ymin = tt['head'].yMin
+    units_per_em = tt['head'].unitsPerEm
 
     # Calculated values
     os2_typo_total_height = os2_typo_ascender + -(os2_typo_descender)
@@ -37,11 +37,11 @@ def get_font_report(fontpath):
     # The file path header
     report_string = " \n"
     report_string = report_string + "=== " + fontpath + " ===\n"
-    namerecord_list = tt['name'].__dict__['names']
+    namerecord_list = tt['name'].names
     # The version string
     for needle in namerecord_list:
-        if needle.__dict__['langID'] == 0 and needle.__dict__['nameID'] == 5:
-            report_string = report_string + str(needle.__dict__['string']) + "\n"
+        if needle.langID == 0 and needle.nameID == 5:
+            report_string = report_string + str(needle.string) + "\n"
     # The SHA1 string
     report_string = report_string + "SHA1: " + get_sha1(fontpath) + "\n\n"
     # The vertical metrics strings
@@ -79,12 +79,12 @@ def modify_linegap_percent(fontpath, percent):
         tt = ttLib.TTFont(fontpath)
 
         # get observed start values from the font
-        os2_typo_ascender = tt['OS/2'].__dict__['sTypoAscender']
-        os2_typo_descender = tt['OS/2'].__dict__['sTypoDescender']
-        os2_typo_linegap = tt['OS/2'].__dict__['sTypoLineGap']
-        hhea_ascent = tt['hhea'].__dict__['ascent']
-        hhea_descent = tt['hhea'].__dict__['descent']
-        units_per_em = tt['head'].__dict__['unitsPerEm']
+        os2_typo_ascender = tt['OS/2'].sTypoAscender
+        os2_typo_descender = tt['OS/2'].sTypoDescender
+        os2_typo_linegap = tt['OS/2'].sTypoLineGap
+        hhea_ascent = tt['hhea'].ascent
+        hhea_descent = tt['hhea'].descent
+        units_per_em = tt['head'].unitsPerEm
 
         # calculate necessary delta values
         os2_typo_ascdesc_delta = os2_typo_ascender + -(os2_typo_descender)
@@ -130,14 +130,14 @@ def modify_linegap_percent(fontpath, percent):
             os2_win_descent = -hhea_descent
 
         # define updated values from above calculations
-        tt['hhea'].__dict__['lineGap'] = hhea_linegap
-        tt['OS/2'].__dict__['sTypoAscender'] = os2_typo_ascender
-        tt['OS/2'].__dict__['sTypoDescender'] = os2_typo_descender
-        tt['OS/2'].__dict__['sTypoLineGap'] = os2_typo_linegap
-        tt['OS/2'].__dict__['usWinAscent'] = os2_win_ascent
-        tt['OS/2'].__dict__['usWinDescent'] = os2_win_descent
-        tt['hhea'].__dict__['ascent'] = hhea_ascent
-        tt['hhea'].__dict__['descent'] = hhea_descent
+        tt['hhea'].lineGap = hhea_linegap
+        tt['OS/2'].sTypoAscender = os2_typo_ascender
+        tt['OS/2'].sTypoDescender = os2_typo_descender
+        tt['OS/2'].sTypoLineGap = os2_typo_linegap
+        tt['OS/2'].usWinAscent = os2_win_ascent
+        tt['OS/2'].usWinDescent = os2_win_descent
+        tt['hhea'].ascent = hhea_ascent
+        tt['hhea'].descent = hhea_descent
 
         tt.save(get_linegap_percent_filepath(fontpath, percent))
         return True
