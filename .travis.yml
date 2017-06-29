@@ -2,15 +2,17 @@
 
 sudo: false
 language: python
-python:
-    - "3.5"
-    - "3.6"
-env:
-    - TOX_ENV=py27
-    - TOX_ENV=py33
-    - TOX_ENV=py34
-    - TOX_ENV=py35
-    - TOX_ENV=py36
+matrix:
+  include:
+    - python: 3.5
+      env:
+        - TOX_ENV=py27
+        - TOX_ENV=py33
+        - TOX_ENV=py34
+        - TOX_ENV=py35
+    - python: 3.6
+      env:
+        - TOX_ENV=py36
 
 script: tox -e $TOX_ENV
 
