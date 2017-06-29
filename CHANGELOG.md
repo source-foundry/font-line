@@ -1,5 +1,9 @@
 ## Changelog
 
+### v0.6.1
+
+- minor Python style fixes (PR #8 by @moyogo)
+
 ### v0.6.0
 
 - modified percent command calculations to maintain vertical metrics approaches in the original font design
