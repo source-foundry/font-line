@@ -1,10 +1,10 @@
 ## font-line [![Build Status](https://travis-ci.org/source-foundry/font-line.svg?branch=master)](https://travis-ci.org/source-foundry/font-line)  [![Build status](https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true)](https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master) [![codecov.io](https://codecov.io/github/source-foundry/font-line/coverage.svg?branch=master)](https://codecov.io/github/source-foundry/font-line?branch=master)
 
 
-### About
-font-line is a libre, open source command line tool for OpenType vertical metrics reporting and command line based font line spacing modifications.  It currently supports `.ttf` and `.otf` font builds.
+## About
+font-line is a libre, open source command line tool for OpenType vertical metrics reporting and command line based font line spacing modifications.  It supports `.ttf` and `.otf` font builds.
 
-### Contents
+## Contents
 
 - [Install Guide](https://github.com/source-foundry/font-line#install)
 - [Usage](https://github.com/source-foundry/font-line#usage)
@@ -13,16 +13,16 @@ font-line is a libre, open source command line tool for OpenType vertical metric
 - [Changelog](https://github.com/source-foundry/font-line/blob/master/CHANGELOG.md)
 - [License](https://github.com/source-foundry/font-line/blob/master/docs/LICENSE)
 
-### Quickstart
+## Quickstart
 
 - Install: `$ pip install font-line`
 - Metrics Report: `$ font-line report [font path]`
 - Modify line spacing: `$ font-line percent [integer %] [font path]`
 - Help: `$ font-line --help`
 
-### Install
+## Install
 
-font-line is built with Python and can be used on systems with Python 2.7+ and Python 3.3+ interpreters, including current releases of pypy and pypy3. You can verify your installed Python version on the command line with the command:
+font-line is built with Python and is tested with Python 2.7 and Python 3.5+ interpreters. You can verify your installed Python version on the command line with the command:
 
 ```
 $ python --version
@@ -30,7 +30,7 @@ $ python --version
 
 Use either of the following methods to install font-line on your system.
 
-#### pip Install
+### pip Install
 
 The latest font-line release is available through the Python Package Index and can be installed with pip:
 
@@ -40,7 +40,7 @@ $ pip install font-line
 
 To upgrade to a new version of font-line after a pip install, use the command `pip install --upgrade font-line`.
 
-#### Download Project Repository and Install
+### Download Project Repository and Install
 
 The current repository version (which may be ahead of the PyPI release) can be installed by [downloading the repository](https://github.com/source-foundry/font-line/archive/master.zip) or cloning it with git:
 
@@ -54,9 +54,9 @@ Navigate to the top level repository directory and enter the following command:
 $ python setup.py install
 ```
 
-Follow the same instructions to upgrade to a new version of the application if you elect to install with this approach.
+Follow the same instructions to upgrade to a new version of the application if you install with this approach.
 
-### Usage
+## Usage
 
 font-line works via sub-commands to the `font-line` command line executable.  The following sub-commands are available:
 
@@ -65,7 +65,7 @@ font-line works via sub-commands to the `font-line` command line executable.  Th
 
 Usage of these sub-commands is described in detail below.
 
-#### Vertical Metrics Reporting
+### Vertical Metrics Reporting
 
 The following OpenType vertical metrics values and calculated values derived from these data are displayed with the `report` sub-command:
 
@@ -83,7 +83,7 @@ The following OpenType vertical metrics values and calculated values derived fro
 - [head] yMax
 - [head] yMin
 
-##### `report` Sub-Command Usage
+#### `report` Sub-Command Usage
 
 Enter one or more font path arguments to the command:
 
@@ -97,7 +97,7 @@ Here is an example of the report generated with the Hack typeface file `Hack-Reg
 $ font-line report Hack-Regular.ttf
 ```
 
-##### Example Font Vertical Metrics Report
+#### Example Font Vertical Metrics Report
 ```
 === Hack-Regular.ttf ===
 Version 3.001; 379b3ad6d-dev
@@ -146,11 +146,11 @@ $ font-line report TheFont.ttf > font-report.txt
 
 You can modify the `font-report.txt` file path above to the file path string of your choice.
 
-#### Vertical Metrics Modifications
+### Vertical Metrics Modifications
 
 font-line supports automated line spacing modifications to a user-defined percentage of the units per em metric.  This value will be abbreviated as UPM below.
 
-##### `percent` Sub-Command Usage
+#### `percent` Sub-Command Usage
 
 Enter the desired percentage of the UPM as the first argument to the command.  This should be *entered as an integer value*.  Then enter one or more font paths to which you would like to apply your font metrics changes.
 
@@ -170,7 +170,7 @@ The original font file is preserved in an unmodified version and the modified fi
 
 You can inspect the vertical metrics in the new font file with the `report` sub-command (see Usage above).
 
-##### Details of Font Metrics Changes with `percent` Sub-Command
+#### Details of Font Metrics Changes with `percent` Sub-Command
 
 The interpretation and display of these multiple vertical metrics values is platform and application dependent.  [There is no broadly accepted "best" approach](https://github.com/source-foundry/font-line/issues/2).  As such, font-line attempts to preserve the original metrics design in the font when modifications are made with the `percent` sub-command.
 
@@ -219,17 +219,17 @@ Where metrics are defined as:
 
 Note that the internal leading modifications are split evenly across [hhea] Ascent & Descent values, and across [OS/2] WinAscent & WinDescent values.  We add half of the new [OS/2] TypoLineGap value to the original [OS/2] TypoAscender or TypoDescender in order to define these new metrics properties.   The [hhea] linegap value is always defined as zero.
 
-#### Important
+### Important
 
 The newly defined vertical metrics values can lead to clipping of glyph components if not properly defined.  There are no tests in font-line to provide assurance that this does not occur. We assume that the user is versed in these issues before use of the application and leave this testing to the designer / user before the modified fonts are used in a production setting.
 
 
-### Issue Reporting
+## Issue Reporting
 
 Please [submit a new issue report](https://github.com/source-foundry/font-line/issues/new) on the project repository.
 
 
-### Acknowledgments
+## Acknowledgments
 
 font-line is built with the fantastic [fontTools](https://github.com/behdad/fonttools) Python library.
 
