@@ -74,6 +74,8 @@ The following OpenType vertical metrics values and calculated values derived fro
 - [OS/2] WinAscent
 - [OS/2] WinDescent
 - [OS/2] TypoLineGap
+- [OS/2] xHeight
+- [OS/2] CapHeight
 - [hhea] Ascent
 - [hhea] Descent
 - [hhea] lineGap
@@ -98,38 +100,40 @@ $ font-line report Hack-Regular.ttf
 ##### Example Font Vertical Metrics Report
 ```
 === Hack-Regular.ttf ===
-Version 2.020;DEV-03192016;
-SHA1: 638f033cc1b6a21597359278bee62cf7e96557ff
+Version 3.001; 379b3ad6d-dev
+SHA1: 20d02edca75f2d23787e80161a64418598c850de
 
 --- Metrics ---
 [head] Units per Em: 	2048
-[head] yMax: 		    2001
-[head] yMin: 		    -573
+[head] yMax: 		2027
+[head] yMin: 		-605
+[OS/2] CapHeight: 	1493
+[OS/2] xHeight: 	1120
 [OS/2] TypoAscender: 	1556
 [OS/2] TypoDescender: 	-492
-[OS/2] WinAscent: 	    1901
-[OS/2] WinDescent: 	     483
-[hhea] Ascent: 		    1901
-[hhea] Descent: 	    -483
+[OS/2] WinAscent: 	1901
+[OS/2] WinDescent: 	483
+[hhea] Ascent: 		1901
+[hhea] Descent: 	-483
 
-[hhea] LineGap: 	      0
+[hhea] LineGap: 	0
 [OS/2] TypoLineGap: 	410
 
 --- Height Calculations by Table Values ---
 [OS/2] TypoAscender to TypoDescender: 	2048
-[OS/2] WinAscent to WinDescent: 	    2384
-[hhea] Ascent to Descent: 		        2384
+[OS/2] WinAscent to WinDescent: 	2384
+[hhea] Ascent to Descent: 		2384
 
 --- Delta Values ---
-WinAscent to TypoAscender: 	    345
-Ascent to TypoAscender: 	    345
-WinDescent to TypoDescender: 	 -9
-Descent to TypoDescender: 	     -9
+WinAscent to TypoAscender: 	345
+Ascent to TypoAscender: 	345
+WinDescent to TypoDescender: 	-9
+Descent to TypoDescender: 	-9
 
 --- Ratios ---
 (Typo Asc + Desc + Linegap) / UPM: 	1.2
-(winAsc + winDesc) / UPM: 		    1.16
-(hhea Asc + Desc) / UPM: 		    1.16
+(winAsc + winDesc) / UPM: 		1.16
+(hhea Asc + Desc) / UPM: 		1.16
 ```
 
 The report includes the font version string, a SHA-1 hash digest of the font file, and OpenType table metrics that are associated with line spacing in the font.
