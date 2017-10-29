@@ -1,4 +1,7 @@
-## font-line [![Build Status](https://travis-ci.org/source-foundry/font-line.svg?branch=master)](https://travis-ci.org/source-foundry/font-line)  [![Build status](https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true)](https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master) [![codecov.io](https://codecov.io/github/source-foundry/font-line/coverage.svg?branch=master)](https://codecov.io/github/source-foundry/font-line?branch=master)
+<img src ="https://raw.githubusercontent.com/source-foundry/font-line/img/img/font-line-crunch.png" />
+
+
+[![Build Status](https://travis-ci.org/source-foundry/font-line.svg?branch=master)](https://travis-ci.org/source-foundry/font-line)  [![Build status](https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true)](https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master) [![codecov.io](https://codecov.io/github/source-foundry/font-line/coverage.svg?branch=master)](https://codecov.io/github/source-foundry/font-line?branch=master)
 
 
 ## About
