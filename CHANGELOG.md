@@ -1,5 +1,15 @@
 ## Changelog
 
+### v0.7.0
+
+- added [OS/2] CapHeight metric to report table
+- added [OS/2] xHeight metric to report table
+- modified version string parsing for report to support fonts that do not contain langID=0 tables
+- added release.sh shell script
+- updated Travis CI testing settings
+- updated Appveyor CI testing settings
+- updated tox.ini Python tox testing settings
+
 ### v0.6.1
 
 - minor Python style fixes (PR #8 by @moyogo)
@@ -17,11 +27,11 @@
 
 ### v0.5.3
 
-- added [head] yMax to report
-- added [head] yMin to report
-- added [OS/2] (TypoAscender + TypoDescender + TypoLineGap) / UPM to report
-- added [OS/2] (winAsc + winDesc) / UPM to report
-- added [OS/2] (hhea Asc + Desc) / UPM to report
+- added [head] yMax metric to report
+- added [head] yMin metric to report
+- added [OS/2] (TypoAscender + TypoDescender + TypoLineGap) / UPM calculation to report
+- added [OS/2] (winAsc + winDesc) / UPM calculation to report
+- added [OS/2] (hhea Asc + Desc) / UPM calculation to report
 - removed [OS/2] TypoLineGap / UPM from the report
 
 ### v0.5.2
