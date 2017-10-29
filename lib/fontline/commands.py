@@ -19,6 +19,8 @@ def get_font_report(fontpath):
     os2_win_ascent = tt['OS/2'].usWinAscent
     os2_win_descent = tt['OS/2'].usWinDescent
     os2_typo_linegap = tt['OS/2'].sTypoLineGap
+    os2_x_height = tt['OS/2'].sxHeight
+    os2_cap_height = tt['OS/2'].sCapHeight
     hhea_ascent = tt['hhea'].ascent
     hhea_descent = tt['hhea'].descent
     hhea_linegap = tt['hhea'].lineGap
@@ -40,7 +42,7 @@ def get_font_report(fontpath):
     namerecord_list = tt['name'].names
     # The version string
     for needle in namerecord_list:
-        if needle.langID == 0 and needle.nameID == 5:
+        if needle.nameID == 5:
             report.append(needle.toStr())
             break
     # The SHA1 string
@@ -51,6 +53,8 @@ def get_font_report(fontpath):
     report.append("[head] Units per Em: \t{}".format(units_per_em))
     report.append("[head] yMax: \t\t{}".format(ymax))
     report.append("[head] yMin: \t\t{}".format(ymin))
+    report.append("[OS/2] CapHeight: \t{}".format(os2_cap_height))
+    report.append("[OS/2] xHeight: \t{}".format(os2_x_height))
     report.append("[OS/2] TypoAscender: \t{}".format(os2_typo_ascender))
     report.append("[OS/2] TypoDescender: \t{}".format(os2_typo_descender))
     report.append("[OS/2] WinAscent: \t{}".format(os2_win_ascent))

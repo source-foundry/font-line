@@ -75,6 +75,42 @@ def test_report_cmd_reportstring_upm(capsys):
     assert "[head] Units per Em: \t2048" in out
 
 
+def test_report_cmd_reportstring_ymax(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[head] yMax: \t\t2001" in out
+
+
+def test_report_cmd_reportstring_ymin(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[head] yMin: \t\t-573" in out
+
+
+def test_report_cmd_reportstring_capheight(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[OS/2] CapHeight: \t1493" in out
+
+
+def test_report_cmd_reportstring_xheight(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[OS/2] xHeight: \t1120" in out
+
+
 def test_report_cmd_reportstring_typoascender(capsys):
     from fontline.app import main
     filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
