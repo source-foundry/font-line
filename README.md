@@ -237,3 +237,6 @@ Please [submit a new issue report](https://github.com/source-foundry/font-line/i
 font-line is built with the fantastic [fontTools](https://github.com/behdad/fonttools) Python library.
 
 
+## License
+
+MIT License.  See [LICENSE.md](docs/LICENSE.md) for details.
