@@ -14,7 +14,7 @@ font-line is a libre, open source command line tool for OpenType vertical metric
 	- [Vertical Metrics Reporting](https://github.com/source-foundry/font-line#vertical-metrics-reporting)
 	- [Line Spacing Modifications](https://github.com/source-foundry/font-line#vertical-metrics-modifications)
 - [Changelog](https://github.com/source-foundry/font-line/blob/master/CHANGELOG.md)
-- [License](https://github.com/source-foundry/font-line/blob/master/docs/LICENSE)
+- [License](https://github.com/source-foundry/font-line/blob/master/docs/LICENSE.md)
 
 ## Quickstart
 
