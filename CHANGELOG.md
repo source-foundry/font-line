@@ -1,5 +1,9 @@
 ## Changelog
 
+### v0.7.1
+
+- bug fix for report failures when the xHeight and CapHeight values are missing from OpenType OS/2 tables in some fonts
+
 ### v0.7.0
 
 - added [OS/2] CapHeight metric to report table
@@ -23,7 +27,7 @@
 
 ### v0.5.4
 
-- fix for font argument file path bug OSX/Linux/Win (issue report #3)
+- fix for font argument file path bug OSX/Linux/Win
 
 ### v0.5.3
 
