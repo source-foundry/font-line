@@ -19,8 +19,14 @@ def get_font_report(fontpath):
     os2_win_ascent = tt['OS/2'].usWinAscent
     os2_win_descent = tt['OS/2'].usWinDescent
     os2_typo_linegap = tt['OS/2'].sTypoLineGap
-    os2_x_height = tt['OS/2'].sxHeight
-    os2_cap_height = tt['OS/2'].sCapHeight
+    try:
+        os2_x_height = tt['OS/2'].sxHeight
+    except AttributeError as e:
+        os2_x_height = "---- (OS/2 table does not contain sxHeight record)"
+    try:
+        os2_cap_height = tt['OS/2'].sCapHeight
+    except AttributeError as e:
+        os2_cap_height = "---- (OS/2 table does not contain sCapHeight record)"
     hhea_ascent = tt['hhea'].ascent
     hhea_descent = tt['hhea'].descent
     hhea_linegap = tt['hhea'].lineGap
