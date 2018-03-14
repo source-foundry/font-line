@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.0.0
+
+- initial stable/production release
+
 ### v0.7.1
 
 - bug fix for report failures when the xHeight and CapHeight values are missing from OpenType OS/2 tables in some fonts
