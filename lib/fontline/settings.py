@@ -9,9 +9,9 @@ app_name = 'font-line'
 # ------------------------------------------------------------------------------
 # Version Number
 # ------------------------------------------------------------------------------
-major_version = "0"
-minor_version = "7"
-patch_version = "1"
+major_version = "1"
+minor_version = "0"
+patch_version = "0"
 
 # ------------------------------------------------------------------------------
 # Help String
@@ -19,7 +19,7 @@ patch_version = "1"
 
 HELP = """====================================================
 font-line
-Copyright 2017 Christopher Simpkins
+Copyright 2018 Christopher Simpkins
 MIT License
 Source: https://github.com/source-foundry/font-line
 ====================================================
