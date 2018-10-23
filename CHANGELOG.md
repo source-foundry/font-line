@@ -1,5 +1,10 @@
 ## Changelog
 
+### v1.0.1
+
+- add docs/LICENSE.md to release archives and Python wheels
+- remove Pipfile and Pipfile.lock from version control
+
 ### v1.0.0
 
 - initial stable/production release
