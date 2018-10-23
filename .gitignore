@@ -66,3 +66,6 @@ target/
 # Project files
 tests/runner.py
 tests/profiler.py
+
+# VS Code files
+.vscode/*
