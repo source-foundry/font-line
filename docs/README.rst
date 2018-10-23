@@ -104,17 +104,19 @@ Vertical Metrics Reporting
 The following OpenType vertical metrics values and calculated values
 derived from these data are displayed with the ``report`` sub-command:
 
--  [OS/2] TypoAscender
--  [OS/2] TypoDescender
--  [OS/2] WinAscent
--  [OS/2] WinDescent
--  [OS/2] TypoLineGap
--  [hhea] Ascent
--  [hhea] Descent
--  [hhea] lineGap
--  [head] unitsPerEm
--  [head] yMax
--  [head] yMin
+- [OS/2] TypoAscender
+- [OS/2] TypoDescender
+- [OS/2] WinAscent
+- [OS/2] WinDescent
+- [OS/2] TypoLineGap
+- [OS/2] xHeight
+- [OS/2] CapHeight
+- [hhea] Ascent
+- [hhea] Descent
+- [hhea] lineGap
+- [head] unitsPerEm
+- [head] yMax
+- [head] yMin
 
 ``report`` Sub-Command Usage
 ''''''''''''''''''''''''''''
@@ -138,13 +140,15 @@ Example Font Vertical Metrics Report
 ::
 
     === Hack-Regular.ttf ===
-    Version 2.020;DEV-03192016;
-    SHA1: 638f033cc1b6a21597359278bee62cf7e96557ff
+    Version 3.001; 379b3ad6d-dev
+    SHA1: 20d02edca75f2d23787e80161a64418598c850de
 
     --- Metrics ---
     [head] Units per Em:    2048
     [head] yMax:            2001
     [head] yMin:            -573
+    [OS/2] CapHeight:       1493
+    [OS/2] xHeight:         1120
     [OS/2] TypoAscender:    1556
     [OS/2] TypoDescender:   -492
     [OS/2] WinAscent:       1901
@@ -323,8 +327,8 @@ Acknowledgments
 font-line is built with the fantastic
 `fontTools <https://github.com/behdad/fonttools>`__ Python library.
 
-.. |Build Status| image:: https://travis-ci.org/source-foundry/font-line.svg?branch=master
-   :target: https://travis-ci.org/source-foundry/font-line
+.. |Build Status| image:: https://semaphoreci.com/api/v1/sourcefoundry/font-line/branches/master/badge.svg
+   :target: https://semaphoreci.com/sourcefoundry/font-line
 .. |Build status| image:: https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true
    :target: https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master
 .. |codecov.io| image:: https://codecov.io/github/source-foundry/font-line/coverage.svg?branch=master
