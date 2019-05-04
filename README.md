@@ -2,7 +2,7 @@
 
 
 [![PyPI](https://img.shields.io/pypi/v/font-line.svg)](https://pypi.org/project/font-line)
-[![Build Status](https://semaphoreci.com/api/v1/sourcefoundry/font-line/branches/master/badge.svg)](https://semaphoreci.com/sourcefoundry/font-line)
+[![Build Status](https://travis-ci.org/source-foundry/font-line.svg?branch=master)](https://travis-ci.org/source-foundry/font-line)
 [![Build status](https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true)](https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master) 
 [![codecov.io](https://codecov.io/github/source-foundry/font-line/coverage.svg?branch=master)](https://codecov.io/github/source-foundry/font-line?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/38f100cc1ef74d568e1bab02ac162cbb)](https://app.codacy.com/app/SourceFoundry/font-line)
