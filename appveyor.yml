@@ -2,19 +2,19 @@ environment:
   matrix:
     - JOB: "3.5 64-bit"
       PYTHON_HOME: "C:\\Python35-x64"
-      test_script: "tox -e py35"
+      TOX_PY: py35
 
     - JOB: "3.6 64-bit"
       PYTHON_HOME: "C:\\Python36-x64"
-      test_script: "tox -e py36"
+      TOX_PY: py36
 
     - JOB: "3.7 64-bit"
       PYTHON_HOME: "C:\\Python37-x64"
-      test_script: "tox -e py37"
+      TOX_PY: py37
 
     - JOB: "3.7 32-bit"
       PYTHON_HOME: "C:\\Python37"
-      test_script: "tox -e py37"
+      TOX_PY: py37
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.
@@ -41,3 +41,6 @@ install:
   - "python -m pip install tox"
 
 build: false
+
+test_script: 
+  - "tox -e %TOX_PY%"
