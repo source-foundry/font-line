@@ -36,6 +36,8 @@ install:
   # install the test dependencies
   - "python -m pip install tox"
 
+build: false
+
 test_script:
   # run tests
   - "tox"
