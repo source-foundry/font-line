@@ -14,7 +14,11 @@ from commandlines import Command
 from standardstreams import stdout, stderr
 
 from fontline import settings
-from fontline.commands import get_font_report, modify_linegap_percent, get_linegap_percent_filepath
+from fontline.commands import (
+    get_font_report,
+    modify_linegap_percent,
+    get_linegap_percent_filepath,
+)
 from fontline.utilities import file_exists, is_supported_filetype
 
 # TODO: support integer addition and subtraction to the metrics values through new sub-commands
@@ -27,7 +31,9 @@ def main():
     c = Command()
 
     if c.does_not_validate_missing_args():
-        stderr("[font-line] ERROR: Please include one or more arguments with your command.")
+        stderr(
+            "[font-line] ERROR: Please include one or more arguments with your command."
+        )
         sys.exit(1)
 
     if c.is_help_request():
@@ -43,7 +49,9 @@ def main():
     # REPORT sub-command
     if c.subcmd == "report":
         if c.argc < 2:
-            stderr("[font-line] ERROR: Missing file path argument(s) after the report subcommand.")
+            stderr(
+                "[font-line] ERROR: Missing file path argument(s) after the report subcommand."
+            )
             sys.exit(1)
         else:
             for fontpath in c.argv[1:]:
@@ -53,9 +61,17 @@ def main():
                     if is_supported_filetype(fontpath):
                         stdout(get_font_report(fontpath))
                     else:
-                        stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a supported font file type.")
+                        stderr(
+                            "[font-line] ERROR: '"
+                            + fontpath
+                            + "' does not appear to be a supported font file type."
+                        )
                 else:
-                    stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a valid filepath.")
+                    stderr(
+                        "[font-line] ERROR: '"
+                        + fontpath
+                        + "' does not appear to be a valid filepath."
+                    )
     # PERCENT sub-command
     elif c.subcmd == "percent":
         if c.argc < 3:
@@ -65,29 +81,59 @@ def main():
             percent = c.argv[1]
             # test the percent integer argument
             try:
-                percent_int = int(percent)  # test that the argument can be cast to an integer value
+                percent_int = int(
+                    percent
+                )  # test that the argument can be cast to an integer value
                 if percent_int <= 0:
-                    stderr("[font-line] ERROR: Please enter a percent value that is greater than zero.")
+                    stderr(
+                        "[font-line] ERROR: Please enter a percent value that is greater than zero."
+                    )
                     sys.exit(1)
                 if percent_int > 100:
-                    stdout("[font-line] Warning: You entered a percent value over 100%. Please confirm that this is "
-                           "your intended metrics modification.")
+                    stdout(
+                        "[font-line] Warning: You entered a percent value over 100%. Please confirm that this is "
+                        "your intended metrics modification."
+                    )
             except ValueError:
-                stderr("[font-line] ERROR: You entered '" + percent + "'. This argument needs to be an integer value.")
+                stderr(
+                    "[font-line] ERROR: You entered '"
+                    + percent
+                    + "'. This argument needs to be an integer value."
+                )
                 sys.exit(1)
             for fontpath in c.argv[2:]:
                 if file_exists(fontpath):
                     if is_supported_filetype(fontpath):
                         if modify_linegap_percent(fontpath, percent) is True:
                             outpath = get_linegap_percent_filepath(fontpath, percent)
-                            stdout("[font-line] '" + fontpath + "' successfully modified to '" + outpath + "'.")
+                            stdout(
+                                "[font-line] '"
+                                + fontpath
+                                + "' successfully modified to '"
+                                + outpath
+                                + "'."
+                            )
                         else:  # pragma: no cover
-                            stderr("[font-line] ERROR: Unsuccessful modification of '" + fontpath + "'.")
+                            stderr(
+                                "[font-line] ERROR: Unsuccessful modification of '"
+                                + fontpath
+                                + "'."
+                            )
                     else:
-                        stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a supported font file type.")
+                        stderr(
+                            "[font-line] ERROR: '"
+                            + fontpath
+                            + "' does not appear to be a supported font file type."
+                        )
                 else:
-                    stderr("[font-line] ERROR: '" + fontpath + "' does not appear to be a valid filepath.")
+                    stderr(
+                        "[font-line] ERROR: '"
+                        + fontpath
+                        + "' does not appear to be a valid filepath."
+                    )
     else:
-        stderr("[font-lines] ERROR: You used an unsupported argument to the executable. Please review the"
-               " `font-line --help` documentation and try again.")
+        stderr(
+            "[font-lines] ERROR: You used an unsupported argument to the executable. Please review the"
+            " `font-line --help` documentation and try again."
+        )
         sys.exit(1)
