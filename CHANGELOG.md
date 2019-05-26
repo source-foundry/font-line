@@ -1,5 +1,17 @@
 ## Changelog
 
+### v2.0.0
+
+- changed copyright notice from "Christopher Simpkins" to "Source Foundry Authors"
+- eliminated Python 2 interpreter support
+- updated shebang lines to `#!/usr/bin/env python3`
+- black formatting for source files
+- refactored Travis CI settings file
+- modified Travis CI testing to Python 3.5 - 3.7
+- refactored Appveyor CI settings file
+- modified Appveyor CI testing to Python 3.5 - 3.7
+- 
+
 ### v1.0.1
 
 - removed unused variables in commands module
