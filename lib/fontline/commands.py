@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import sys
@@ -14,25 +14,25 @@ def get_font_report(fontpath):
     tt = ttLib.TTFont(fontpath)
 
     # Vertical metrics values as integers
-    os2_typo_ascender = tt['OS/2'].sTypoAscender
-    os2_typo_descender = tt['OS/2'].sTypoDescender
-    os2_win_ascent = tt['OS/2'].usWinAscent
-    os2_win_descent = tt['OS/2'].usWinDescent
-    os2_typo_linegap = tt['OS/2'].sTypoLineGap
+    os2_typo_ascender = tt["OS/2"].sTypoAscender
+    os2_typo_descender = tt["OS/2"].sTypoDescender
+    os2_win_ascent = tt["OS/2"].usWinAscent
+    os2_win_descent = tt["OS/2"].usWinDescent
+    os2_typo_linegap = tt["OS/2"].sTypoLineGap
     try:
-        os2_x_height = tt['OS/2'].sxHeight
+        os2_x_height = tt["OS/2"].sxHeight
     except AttributeError:
         os2_x_height = "---- (OS/2 table does not contain sxHeight record)"
     try:
-        os2_cap_height = tt['OS/2'].sCapHeight
+        os2_cap_height = tt["OS/2"].sCapHeight
     except AttributeError:
         os2_cap_height = "---- (OS/2 table does not contain sCapHeight record)"
-    hhea_ascent = tt['hhea'].ascent
-    hhea_descent = tt['hhea'].descent
-    hhea_linegap = tt['hhea'].lineGap
-    ymax = tt['head'].yMax
-    ymin = tt['head'].yMin
-    units_per_em = tt['head'].unitsPerEm
+    hhea_ascent = tt["hhea"].ascent
+    hhea_descent = tt["hhea"].descent
+    hhea_linegap = tt["hhea"].lineGap
+    ymax = tt["head"].yMax
+    ymin = tt["head"].yMin
+    units_per_em = tt["head"].unitsPerEm
 
     # Calculated values
     os2_typo_total_height = os2_typo_ascender + -(os2_typo_descender)
@@ -45,7 +45,7 @@ def get_font_report(fontpath):
     # The file path header
     report = [" "]
     report.append("=== " + fontpath + " ===")
-    namerecord_list = tt['name'].names
+    namerecord_list = tt["name"].names
     # The version string
     for needle in namerecord_list:
         if needle.nameID == 5:
@@ -72,15 +72,27 @@ def get_font_report(fontpath):
     report.append("[OS/2] TypoLineGap: \t{}".format(os2_typo_linegap))
     report.append("")
     report.append("--- Height Calculations by Table Values ---")
-    report.append("[OS/2] TypoAscender to TypoDescender: \t{}".format(os2_typo_total_height))
+    report.append(
+        "[OS/2] TypoAscender to TypoDescender: \t{}".format(os2_typo_total_height)
+    )
     report.append("[OS/2] WinAscent to WinDescent: \t{}".format(os2_win_total_height))
     report.append("[hhea] Ascent to Descent: \t\t{}".format(hhea_total_height))
     report.append("")
     report.append("--- Delta Values ---")
-    report.append("WinAscent to TypoAscender: \t{}".format(os2_win_ascent - os2_typo_ascender))
-    report.append("Ascent to TypoAscender: \t{}".format(hhea_ascent - os2_typo_ascender))
-    report.append("WinDescent to TypoDescender: \t{}".format(os2_win_descent - -(os2_typo_descender)))
-    report.append("Descent to TypoDescender: \t{}".format(os2_typo_descender - hhea_descent))
+    report.append(
+        "WinAscent to TypoAscender: \t{}".format(os2_win_ascent - os2_typo_ascender)
+    )
+    report.append(
+        "Ascent to TypoAscender: \t{}".format(hhea_ascent - os2_typo_ascender)
+    )
+    report.append(
+        "WinDescent to TypoDescender: \t{}".format(
+            os2_win_descent - -(os2_typo_descender)
+        )
+    )
+    report.append(
+        "Descent to TypoDescender: \t{}".format(os2_typo_descender - hhea_descent)
+    )
     report.append("")
     report.append("--- Ratios ---")
     report.append("(Typo Asc + Desc + Linegap) / UPM: \t{0:.3g}".format(typo_to_upm))
@@ -95,12 +107,12 @@ def modify_linegap_percent(fontpath, percent):
         tt = ttLib.TTFont(fontpath)
 
         # get observed start values from the font
-        os2_typo_ascender = tt['OS/2'].sTypoAscender
-        os2_typo_descender = tt['OS/2'].sTypoDescender
-        os2_typo_linegap = tt['OS/2'].sTypoLineGap
-        hhea_ascent = tt['hhea'].ascent
-        hhea_descent = tt['hhea'].descent
-        units_per_em = tt['head'].unitsPerEm
+        os2_typo_ascender = tt["OS/2"].sTypoAscender
+        os2_typo_descender = tt["OS/2"].sTypoDescender
+        os2_typo_linegap = tt["OS/2"].sTypoLineGap
+        hhea_ascent = tt["hhea"].ascent
+        hhea_descent = tt["hhea"].descent
+        units_per_em = tt["head"].unitsPerEm
 
         # calculate necessary delta values
         os2_typo_ascdesc_delta = os2_typo_ascender + -(os2_typo_descender)
@@ -146,19 +158,24 @@ def modify_linegap_percent(fontpath, percent):
             os2_win_descent = -hhea_descent
 
         # define updated values from above calculations
-        tt['hhea'].lineGap = hhea_linegap
-        tt['OS/2'].sTypoAscender = os2_typo_ascender
-        tt['OS/2'].sTypoDescender = os2_typo_descender
-        tt['OS/2'].sTypoLineGap = os2_typo_linegap
-        tt['OS/2'].usWinAscent = os2_win_ascent
-        tt['OS/2'].usWinDescent = os2_win_descent
-        tt['hhea'].ascent = hhea_ascent
-        tt['hhea'].descent = hhea_descent
+        tt["hhea"].lineGap = hhea_linegap
+        tt["OS/2"].sTypoAscender = os2_typo_ascender
+        tt["OS/2"].sTypoDescender = os2_typo_descender
+        tt["OS/2"].sTypoLineGap = os2_typo_linegap
+        tt["OS/2"].usWinAscent = os2_win_ascent
+        tt["OS/2"].usWinDescent = os2_win_descent
+        tt["hhea"].ascent = hhea_ascent
+        tt["hhea"].descent = hhea_descent
 
         tt.save(get_linegap_percent_filepath(fontpath, percent))
         return True
     except Exception as e:  # pragma: no cover
-        stderr("[font-line] ERROR: Unable to modify the line spacing in the font file '" + fontpath + "'. " + str(e))
+        stderr(
+            "[font-line] ERROR: Unable to modify the line spacing in the font file '"
+            + fontpath
+            + "'. "
+            + str(e)
+        )
         sys.exit(1)
 
 

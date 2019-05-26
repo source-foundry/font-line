@@ -2,10 +2,10 @@
 
 
 [![PyPI](https://img.shields.io/pypi/v/font-line.svg)](https://pypi.org/project/font-line)
-[![Build Status](https://semaphoreci.com/api/v1/sourcefoundry/font-line/branches/master/badge.svg)](https://semaphoreci.com/sourcefoundry/font-line)
+[![Build Status](https://travis-ci.org/source-foundry/font-line.svg?branch=master)](https://travis-ci.org/source-foundry/font-line)
 [![Build status](https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true)](https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master) 
 [![codecov.io](https://codecov.io/github/source-foundry/font-line/coverage.svg?branch=master)](https://codecov.io/github/source-foundry/font-line?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/38f100cc1ef74d568e1bab02ac162cbb)](https://app.codacy.com/app/SourceFoundry/font-line)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d77b55866c794a5a9dd3b3dfea9ec318)](https://www.codacy.com/app/SourceFoundry/font-line)
 
 ## About
 font-line is a libre, open source command line tool for OpenType vertical metrics reporting and command line based font line spacing modifications.  It supports `.ttf` and `.otf` font builds.
@@ -21,17 +21,17 @@ font-line is a libre, open source command line tool for OpenType vertical metric
 
 ## Quickstart
 
-- Install: `$ pip install font-line`
+- Install: `$ pip3 install font-line`
 - Metrics Report: `$ font-line report [font path]`
 - Modify line spacing: `$ font-line percent [integer %] [font path]`
 - Help: `$ font-line --help`
 
 ## Install
 
-font-line is built with Python and is tested with Python 2.7 and Python 3.4+ interpreters. You can verify your installed Python version on the command line with the command:
+font-line is built with Python and is tested with Python 3.5+ interpreters. You can verify your installed Python version on the command line with the command:
 
 ```
-$ python --version
+$ python3 --version
 ```
 
 Use either of the following methods to install font-line on your system.
@@ -41,10 +41,10 @@ Use either of the following methods to install font-line on your system.
 The latest font-line release is available through the Python Package Index and can be installed with pip:
 
 ```
-$ pip install font-line
+$ pip3 install font-line
 ```
 
-To upgrade to a new version of font-line after a pip install, use the command `pip install --upgrade font-line`.
+To upgrade to a new version of font-line after a pip install, use the command `pip3 install --upgrade font-line`.
 
 ### Download Project Repository and Install
 
@@ -57,7 +57,7 @@ git clone https://github.com/source-foundry/font-line.git
 Navigate to the top level repository directory and enter the following command:
 
 ```
-$ python setup.py install
+$ pip3 install .
 ```
 
 Follow the same instructions to upgrade to a new version of the application if you install with this approach.
@@ -237,7 +237,7 @@ Please [submit a new issue report](https://github.com/source-foundry/font-line/i
 
 ## Acknowledgments
 
-font-line is built with the fantastic [fontTools](https://github.com/behdad/fonttools) Python library.
+font-line is built with the fantastic [fontTools](https://github.com/fonttools/fonttools) Python library.
 
 
 ## License
