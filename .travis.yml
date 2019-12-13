@@ -9,10 +9,6 @@ matrix:
       env: TOX_ENV=lint
       install: pip install flake8
       script: flake8 --ignore=E501,W503 lib/fontline/*.py
-    - python: 3.5
-      env: TOX_ENV=py35
-      install: pip install tox
-      script: tox -e $TOX_ENV
     - python: 3.6
       env: TOX_ENV=py36
       install: pip install tox
