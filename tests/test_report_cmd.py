@@ -72,7 +72,7 @@ def test_report_cmd_reportstring_upm(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[head] Units per Em: \t2048" in out
+    assert "[head] Units per Em:   2048" in out
 
 
 def test_report_cmd_reportstring_ymax(capsys):
@@ -81,7 +81,7 @@ def test_report_cmd_reportstring_ymax(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[head] yMax: \t\t2001" in out
+    assert "[head] yMax:           2001" in out
 
 
 def test_report_cmd_reportstring_ymin(capsys):
@@ -90,7 +90,7 @@ def test_report_cmd_reportstring_ymin(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[head] yMin: \t\t-573" in out
+    assert "[head] yMin:          -573" in out
 
 
 def test_report_cmd_reportstring_capheight(capsys):
@@ -99,7 +99,7 @@ def test_report_cmd_reportstring_capheight(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[OS/2] CapHeight: \t1493" in out
+    assert "[OS/2] CapHeight:      1493" in out
 
 
 def test_report_cmd_reportstring_xheight(capsys):
@@ -108,7 +108,7 @@ def test_report_cmd_reportstring_xheight(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[OS/2] xHeight: \t1120" in out
+    assert "[OS/2] xHeight:        1120" in out
 
 
 def test_report_cmd_reportstring_typoascender(capsys):
@@ -117,7 +117,7 @@ def test_report_cmd_reportstring_typoascender(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[OS/2] TypoAscender: \t1556" in out
+    assert "[OS/2] TypoAscender:   1556" in out
 
 
 def test_report_cmd_reportstring_typodescender(capsys):
@@ -126,7 +126,7 @@ def test_report_cmd_reportstring_typodescender(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[OS/2] TypoDescender: \t-492" in out
+    assert "[OS/2] TypoDescender: -492" in out
 
 
 def test_report_cmd_reportstring_winascent(capsys):
@@ -135,7 +135,7 @@ def test_report_cmd_reportstring_winascent(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[OS/2] WinAscent: \t1901" in out
+    assert "[OS/2] WinAscent:      1901" in out
 
 
 def test_report_cmd_reportstring_windescent(capsys):
@@ -144,7 +144,7 @@ def test_report_cmd_reportstring_windescent(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[OS/2] WinDescent: \t483" in out
+    assert "[OS/2] WinDescent:     483" in out
 
 
 def test_report_cmd_reportstring_ascent(capsys):
@@ -153,7 +153,7 @@ def test_report_cmd_reportstring_ascent(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[hhea] Ascent: \t\t1901" in out
+    assert "[hhea] Ascent:         1901" in out
 
 
 def test_report_cmd_reportstring_descent(capsys):
@@ -162,7 +162,7 @@ def test_report_cmd_reportstring_descent(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[hhea] Descent: \t-483" in out
+    assert "[hhea] Descent:       -483" in out
 
 
 def test_report_cmd_reportstring_linegap(capsys):
@@ -171,7 +171,7 @@ def test_report_cmd_reportstring_linegap(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[hhea] LineGap: \t0" in out
+    assert "[hhea] LineGap:        0" in out
 
 
 def test_report_cmd_reportstring_typolinegap(capsys):
@@ -180,7 +180,7 @@ def test_report_cmd_reportstring_typolinegap(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[OS/2] TypoLineGap: \t410" in out
+    assert "[OS/2] TypoLineGap:    410" in out
 
 
 def test_report_cmd_reportstring_typoA_typodesc(capsys):
@@ -189,7 +189,7 @@ def test_report_cmd_reportstring_typoA_typodesc(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[OS/2] TypoAscender to TypoDescender: \t2048" in out
+    assert "[OS/2] TypoAscender to TypoDescender:  2048" in out
 
 
 def test_report_cmd_reportstring_winA_windesc(capsys):
@@ -198,7 +198,7 @@ def test_report_cmd_reportstring_winA_windesc(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[OS/2] WinAscent to WinDescent: \t2384" in out
+    assert "[OS/2] WinAscent to WinDescent:        2384" in out
 
 
 def test_report_cmd_reportstring_ascent_descent(capsys):
@@ -207,7 +207,7 @@ def test_report_cmd_reportstring_ascent_descent(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[hhea] Ascent to Descent: \t\t2384" in out
+    assert "[hhea] Ascent to Descent:              2384" in out
 
 
 def test_report_cmd_reportstring_winA_typoasc(capsys):
@@ -216,7 +216,7 @@ def test_report_cmd_reportstring_winA_typoasc(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "WinAscent to TypoAscender: \t345" in out
+    assert "[hhea] Ascent to [OS/2] TypoAscender:       345" in out
 
 
 def test_report_cmd_reportstring_ascent_typoasc(capsys):
@@ -225,7 +225,7 @@ def test_report_cmd_reportstring_ascent_typoasc(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "Ascent to TypoAscender: \t345" in out
+    assert "[hhea] Ascent to [OS/2] TypoAscender:       345" in out
 
 
 def test_report_cmd_reportstring_winD_typodesc(capsys):
@@ -234,7 +234,7 @@ def test_report_cmd_reportstring_winD_typodesc(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "WinDescent to TypoDescender: \t-9" in out
+    assert "[OS/2] WinDescent to [OS/2] TypoDescender:  -9" in out
 
 
 def test_report_cmd_reportstring_descent_typodesc(capsys):
@@ -243,7 +243,7 @@ def test_report_cmd_reportstring_descent_typodesc(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "Descent to TypoDescender: \t-9" in out
+    assert "[hhea] Descent to [OS/2] TypoDescender:      -9" in out
 
 
 def test_report_cmd_reportstring_typo_to_upm(capsys):
@@ -252,7 +252,7 @@ def test_report_cmd_reportstring_typo_to_upm(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "(Typo Asc + Desc + Linegap) / UPM: \t1.2" in out
+    assert "typo metrics / UPM:  1.2" in out
 
 
 def test_report_cmd_reportstring_win_to_upm(capsys):
@@ -261,7 +261,7 @@ def test_report_cmd_reportstring_win_to_upm(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "(winAsc + winDesc) / UPM: \t\t1.16" in out
+    assert "win metrics / UPM:   1.16" in out
 
 
 def test_report_cmd_reportstring_hhea_to_upm(capsys):
@@ -270,4 +270,4 @@ def test_report_cmd_reportstring_hhea_to_upm(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "(hhea Asc + Desc) / UPM: \t\t1.16" in out
+    assert "hhea metrics / UPM:  1.16" in out
