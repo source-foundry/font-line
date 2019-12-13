@@ -103,7 +103,7 @@ def get_font_report(fontpath):
         )
     )
     report.append(
-        "[hhea] Descent : [OS/2] TypoDescender:      {}".format(
+        "[hhea] Descent to [OS/2] TypoDescender:      {}".format(
             os2_typo_descender - hhea_descent
         )
     )
