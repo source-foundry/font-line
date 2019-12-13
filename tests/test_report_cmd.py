@@ -271,3 +271,24 @@ def test_report_cmd_reportstring_hhea_to_upm(capsys):
     main()
     out, err = capsys.readouterr()
     assert "hhea metrics / UPM:  1.16" in out
+
+
+def test_report_cmd_reportstring_fsselection_bit7_set_true(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular-fsSelection-bit7-set.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[OS/2] fsSelection USE_TYPO_METRICS bit set: True" in out
+
+
+def test_report_cmd_reportstring_fsselection_bit7_set_false(capsys):
+    from fontline.app import main
+    filepath = os.path.join('tests', 'testingfiles', 'Hack-Regular.ttf')
+    sys.argv = ['font-line', 'report', filepath]
+    main()
+    out, err = capsys.readouterr()
+    assert "[OS/2] fsSelection USE_TYPO_METRICS bit set: False" in out
+
+
+# TODO: add tests for new baseline to baseline distance calculations in report
