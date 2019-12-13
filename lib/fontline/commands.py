@@ -35,8 +35,8 @@ def get_font_report(fontpath):
     units_per_em = tt["head"].unitsPerEm
 
     # Bit flag checks
-    fsselection_bit6_mask = 1 << 6
-    fsselection_bit6_set = (tt["OS/2"].fsSelection & fsselection_bit6_mask) != 0
+    fsselection_bit7_mask = 1 << 7
+    fsselection_bit7_set = (tt["OS/2"].fsSelection & fsselection_bit7_mask) != 0
 
     # Calculated values
     os2_typo_total_height = os2_typo_ascender + -(os2_typo_descender)
@@ -124,7 +124,7 @@ def get_font_report(fontpath):
     report.append("win metrics:  {}".format(win_btb_distance))
     report.append("")
     report.append(
-        "[OS/2] fsSelection USE_TYPO_METRICS bit set: {}".format(fsselection_bit6_set)
+        "[OS/2] fsSelection USE_TYPO_METRICS bit set: {}".format(fsselection_bit7_set)
     )
     report.append("")
     report.append("--- Ratios ---")
