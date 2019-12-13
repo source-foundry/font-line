@@ -18,6 +18,17 @@ matrix:
       install: pip install tox
       dist: xenial
       script: tox -e $TOX_ENV
+    - python: 3.7
+      dist: xenial
+      env: TOX_ENV=coverage
+      install:
+        - pip install --upgrade coverage
+        - pip install .
+      script:
+        - coverage run --source fontline -m py.test
+        - coverage report -m
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
 
 notifications:
   email: false
