@@ -34,13 +34,25 @@ def get_font_report(fontpath):
     ymin = tt["head"].yMin
     units_per_em = tt["head"].unitsPerEm
 
+    # Bit flag checks
+    fsselection_bit6_mask = 1 << 6
+    fsselection_bit6_set = (tt['OS/2'].fsSelection & fsselection_bit6_mask ) != 0
+
     # Calculated values
     os2_typo_total_height = os2_typo_ascender + -(os2_typo_descender)
     os2_win_total_height = os2_win_ascent + os2_win_descent
     hhea_total_height = hhea_ascent + -(hhea_descent)
-    typo_to_upm = 1.0 * (os2_typo_linegap + os2_typo_total_height) / units_per_em
-    winascdesc_to_upm = 1.0 * os2_win_total_height / units_per_em
-    hheaascdesc_to_upm = 1.0 * hhea_total_height / units_per_em
+
+    hhea_btb_distance = hhea_total_height + hhea_linegap
+    typo_btb_distance = os2_typo_total_height + os2_typo_linegap
+    win_external_leading = hhea_linegap - ((os2_win_ascent + os2_win_descent) - (hhea_ascent - hhea_descent))
+    if win_external_leading < 0:
+        win_external_leading = 0
+    win_btb_distance = os2_win_ascent + os2_win_descent + win_external_leading
+
+    typo_to_upm = 1.0 * typo_btb_distance / units_per_em
+    winascdesc_to_upm = 1.0 * win_btb_distance / units_per_em
+    hheaascdesc_to_upm = 1.0 * hhea_btb_distance / units_per_em
 
     # The file path header
     report = [" "]
@@ -56,48 +68,57 @@ def get_font_report(fontpath):
     report.append("")
     # The vertical metrics strings
     report.append("--- Metrics ---")
-    report.append("[head] Units per Em: \t{}".format(units_per_em))
-    report.append("[head] yMax: \t\t{}".format(ymax))
-    report.append("[head] yMin: \t\t{}".format(ymin))
-    report.append("[OS/2] CapHeight: \t{}".format(os2_cap_height))
-    report.append("[OS/2] xHeight: \t{}".format(os2_x_height))
-    report.append("[OS/2] TypoAscender: \t{}".format(os2_typo_ascender))
-    report.append("[OS/2] TypoDescender: \t{}".format(os2_typo_descender))
-    report.append("[OS/2] WinAscent: \t{}".format(os2_win_ascent))
-    report.append("[OS/2] WinDescent: \t{}".format(os2_win_descent))
-    report.append("[hhea] Ascent: \t\t{}".format(hhea_ascent))
-    report.append("[hhea] Descent: \t{}".format(hhea_descent))
+    report.append("[head] Units per Em:   {}".format(units_per_em))
+    report.append("[head] yMax:           {}".format(ymax))
+    report.append("[head] yMin:          {}".format(ymin))
+    report.append("[OS/2] CapHeight:      {}".format(os2_cap_height))
+    report.append("[OS/2] xHeight:        {}".format(os2_x_height))
+    report.append("[OS/2] TypoAscender:   {}".format(os2_typo_ascender))
+    report.append("[OS/2] TypoDescender: {}".format(os2_typo_descender))
+    report.append("[OS/2] WinAscent:      {}".format(os2_win_ascent))
+    report.append("[OS/2] WinDescent:     {}".format(os2_win_descent))
+    report.append("[hhea] Ascent:         {}".format(hhea_ascent))
+    report.append("[hhea] Descent:       {}".format(hhea_descent))
     report.append("")
-    report.append("[hhea] LineGap: \t{}".format(hhea_linegap))
-    report.append("[OS/2] TypoLineGap: \t{}".format(os2_typo_linegap))
+    report.append("[hhea] LineGap:        {}".format(hhea_linegap))
+    report.append("[OS/2] TypoLineGap:    {}".format(os2_typo_linegap))
     report.append("")
-    report.append("--- Height Calculations by Table Values ---")
-    report.append(
-        "[OS/2] TypoAscender to TypoDescender: \t{}".format(os2_typo_total_height)
+
+    report.append("--- Ascent to Descent Calculations ---")
+    report.append("[hhea] Ascent to Descent:              {}".format(hhea_total_height))
+    report.append("[OS/2] TypoAscender to TypoDescender:  {}".format(os2_typo_total_height)
     )
-    report.append("[OS/2] WinAscent to WinDescent: \t{}".format(os2_win_total_height))
-    report.append("[hhea] Ascent to Descent: \t\t{}".format(hhea_total_height))
+    report.append("[OS/2] WinAscent to WinDescent:        {}".format(os2_win_total_height))
     report.append("")
+
     report.append("--- Delta Values ---")
     report.append(
-        "WinAscent to TypoAscender: \t{}".format(os2_win_ascent - os2_typo_ascender)
+        "[hhea] Ascent to [OS/2] TypoAscender:       {}".format(hhea_ascent - os2_typo_ascender)
     )
     report.append(
-        "Ascent to TypoAscender: \t{}".format(hhea_ascent - os2_typo_ascender)
+        "[hhea] Descent : [OS/2] TypoDescender:      {}".format(os2_typo_descender - hhea_descent)
     )
     report.append(
-        "WinDescent to TypoDescender: \t{}".format(
+        "[OS/2] WinAscent to [OS/2] TypoAscender:    {}".format(os2_win_ascent - os2_typo_ascender)
+    )
+    report.append(
+        "[OS/2] WinDescent to [OS/2] TypoDescender:  {}".format(
             os2_win_descent - -(os2_typo_descender)
         )
     )
-    report.append(
-        "Descent to TypoDescender: \t{}".format(os2_typo_descender - hhea_descent)
-    )
+    report.append("")
+    report.append("--- Baseline to Baseline Distances ---")
+    report.append("hhea metrics: {}".format(hhea_btb_distance))
+    report.append("typo metrics: {}".format(typo_btb_distance))
+    report.append("win metrics:  {}".format(win_btb_distance))
+    report.append("")
+    report.append("[OS/2] fsSelection USE_TYPO_METRICS bit set: {}".format(fsselection_bit6_set))
     report.append("")
     report.append("--- Ratios ---")
-    report.append("(Typo Asc + Desc + Linegap) / UPM: \t{0:.3g}".format(typo_to_upm))
-    report.append("(winAsc + winDesc) / UPM: \t\t{0:.3g}".format(winascdesc_to_upm))
-    report.append("(hhea Asc + Desc) / UPM: \t\t{0:.3g}".format(hheaascdesc_to_upm))
+    report.append("hhea metrics / UPM:  {0:.3g}".format(hheaascdesc_to_upm))
+    report.append("typo metrics / UPM:  {0:.3g}".format(typo_to_upm))
+    report.append("win metrics / UPM:   {0:.3g}".format(winascdesc_to_upm))
+
 
     return "\n".join(report)
 
