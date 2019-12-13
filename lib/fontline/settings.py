@@ -9,7 +9,7 @@ app_name = "font-line"
 # ------------------------------------------------------------------------------
 # Version Number
 # ------------------------------------------------------------------------------
-major_version = "2"
+major_version = "3"
 minor_version = "0"
 patch_version = "0"
 
@@ -19,7 +19,7 @@ patch_version = "0"
 
 HELP = """====================================================
 font-line
-Copyright 2018 Christopher Simpkins
+Copyright 2019 Christopher Simpkins
 MIT License
 Source: https://github.com/source-foundry/font-line
 ====================================================
@@ -48,7 +48,7 @@ USAGE
 Reports are sent to the standard output stream with the `report` sub-command.
 
 Original font files are not modified when you use the `percent` sub-command.  Instead a new file write occurs on a path
-that is displayed in the standard output stream following the modification.  No modifications are made to the original
+that is displayed in the standard output stream when completed.  No modifications are made to the original
 glyph set or hints associated with the original font build.
 
 For more information about the OpenType table modifications that occur, please see the project documentation at:
