@@ -36,7 +36,7 @@ def get_font_report(fontpath):
 
     # Bit flag checks
     fsselection_bit6_mask = 1 << 6
-    fsselection_bit6_set = (tt['OS/2'].fsSelection & fsselection_bit6_mask ) != 0
+    fsselection_bit6_set = (tt["OS/2"].fsSelection & fsselection_bit6_mask) != 0
 
     # Calculated values
     os2_typo_total_height = os2_typo_ascender + -(os2_typo_descender)
@@ -45,7 +45,9 @@ def get_font_report(fontpath):
 
     hhea_btb_distance = hhea_total_height + hhea_linegap
     typo_btb_distance = os2_typo_total_height + os2_typo_linegap
-    win_external_leading = hhea_linegap - ((os2_win_ascent + os2_win_descent) - (hhea_ascent - hhea_descent))
+    win_external_leading = hhea_linegap - (
+        (os2_win_ascent + os2_win_descent) - (hhea_ascent - hhea_descent)
+    )
     if win_external_leading < 0:
         win_external_leading = 0
     win_btb_distance = os2_win_ascent + os2_win_descent + win_external_leading
@@ -86,20 +88,29 @@ def get_font_report(fontpath):
 
     report.append("--- Ascent to Descent Calculations ---")
     report.append("[hhea] Ascent to Descent:              {}".format(hhea_total_height))
-    report.append("[OS/2] TypoAscender to TypoDescender:  {}".format(os2_typo_total_height)
+    report.append(
+        "[OS/2] TypoAscender to TypoDescender:  {}".format(os2_typo_total_height)
     )
-    report.append("[OS/2] WinAscent to WinDescent:        {}".format(os2_win_total_height))
+    report.append(
+        "[OS/2] WinAscent to WinDescent:        {}".format(os2_win_total_height)
+    )
     report.append("")
 
     report.append("--- Delta Values ---")
     report.append(
-        "[hhea] Ascent to [OS/2] TypoAscender:       {}".format(hhea_ascent - os2_typo_ascender)
+        "[hhea] Ascent to [OS/2] TypoAscender:       {}".format(
+            hhea_ascent - os2_typo_ascender
+        )
     )
     report.append(
-        "[hhea] Descent : [OS/2] TypoDescender:      {}".format(os2_typo_descender - hhea_descent)
+        "[hhea] Descent : [OS/2] TypoDescender:      {}".format(
+            os2_typo_descender - hhea_descent
+        )
     )
     report.append(
-        "[OS/2] WinAscent to [OS/2] TypoAscender:    {}".format(os2_win_ascent - os2_typo_ascender)
+        "[OS/2] WinAscent to [OS/2] TypoAscender:    {}".format(
+            os2_win_ascent - os2_typo_ascender
+        )
     )
     report.append(
         "[OS/2] WinDescent to [OS/2] TypoDescender:  {}".format(
@@ -112,13 +123,14 @@ def get_font_report(fontpath):
     report.append("typo metrics: {}".format(typo_btb_distance))
     report.append("win metrics:  {}".format(win_btb_distance))
     report.append("")
-    report.append("[OS/2] fsSelection USE_TYPO_METRICS bit set: {}".format(fsselection_bit6_set))
+    report.append(
+        "[OS/2] fsSelection USE_TYPO_METRICS bit set: {}".format(fsselection_bit6_set)
+    )
     report.append("")
     report.append("--- Ratios ---")
     report.append("hhea metrics / UPM:  {0:.3g}".format(hheaascdesc_to_upm))
     report.append("typo metrics / UPM:  {0:.3g}".format(typo_to_upm))
     report.append("win metrics / UPM:   {0:.3g}".format(winascdesc_to_upm))
-
 
     return "\n".join(report)
 
