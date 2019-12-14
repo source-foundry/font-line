@@ -171,7 +171,7 @@ You can modify the `font-report.txt` file path above to the file path string of 
 
 #### Baseline to Baseline Distance Calculations
 
-Baseline to baseline distance (BTBD) calculations are performed according to the [Microsoft Recommendations for OpenType Fonts](https://docs.microsoft.com/en-us/typography/opentype/spec/recom#baseline-to-baseline-distances).
+Baseline to baseline distance (BTBD) calculations are performed according to the [Microsoft Recommendations for OpenType Fonts](https://docs.microsoft.com/en-us/typography/opentype/spec/recom#baseline-to-baseline-distances) and [OpenType OS/2 table specification](https://docs.microsoft.com/en-us/typography/opentype/spec/os2).
 
 ##### hhea Metrics
 
