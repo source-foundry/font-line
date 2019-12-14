@@ -243,7 +243,7 @@ def test_report_cmd_reportstring_descent_typodesc(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "[hhea] Descent to [OS/2] TypoDescender:      -9" in out
+    assert "[hhea] Descent to [OS/2] TypoDescender:     -9" in out
 
 
 def test_report_cmd_reportstring_typo_to_upm(capsys):
@@ -261,7 +261,7 @@ def test_report_cmd_reportstring_win_to_upm(capsys):
     sys.argv = ['font-line', 'report', filepath]
     main()
     out, err = capsys.readouterr()
-    assert "win metrics / UPM:   1.16" in out
+    assert "win metrics  / UPM:  1.16" in out
 
 
 def test_report_cmd_reportstring_hhea_to_upm(capsys):

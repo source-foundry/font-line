@@ -100,7 +100,7 @@ def get_font_report(fontpath):
     report.append(":" * 50)
     report.append("hhea metrics / UPM:  {0:.3g}".format(metrics.hheaascdesc_to_upm))
     report.append("typo metrics / UPM:  {0:.3g}".format(metrics.typo_to_upm))
-    report.append("win metrics / UPM:   {0:.3g}".format(metrics.winascdesc_to_upm))
+    report.append("win metrics  / UPM:  {0:.3g}".format(metrics.winascdesc_to_upm))
 
     return "\n".join(report)
 
