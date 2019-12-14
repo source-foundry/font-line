@@ -23,7 +23,9 @@ def get_font_report(fontpath):
     report.append("SHA1: " + metrics.sha1)
     report.append("")
     # The vertical metrics strings
-    report.append("--- Metrics ---")
+    report.append(":" * 50)
+    report.append("  Metrics")
+    report.append(":" * 50)
     report.append("[head] Units per Em:   {}".format(metrics.units_per_em))
     report.append("[head] yMax:           {}".format(metrics.ymax))
     report.append("[head] yMin:          {}".format(metrics.ymin))
@@ -40,7 +42,9 @@ def get_font_report(fontpath):
     report.append("[OS/2] TypoLineGap:    {}".format(metrics.os2_typo_linegap))
     report.append("")
 
-    report.append("--- Ascent to Descent Calculations ---")
+    report.append(":" * 50)
+    report.append("  Ascent to Descent Calculations")
+    report.append(":" * 50)
     report.append(
         "[hhea] Ascent to Descent:              {}".format(metrics.hhea_total_height)
     )
@@ -54,14 +58,16 @@ def get_font_report(fontpath):
     )
     report.append("")
 
-    report.append("--- Delta Values ---")
+    report.append(":" * 50)
+    report.append("  Delta Values")
+    report.append(":" * 50)
     report.append(
         "[hhea] Ascent to [OS/2] TypoAscender:       {}".format(
             metrics.hhea_ascent - metrics.os2_typo_ascender
         )
     )
     report.append(
-        "[hhea] Descent to [OS/2] TypoDescender:      {}".format(
+        "[hhea] Descent to [OS/2] TypoDescender:     {}".format(
             metrics.os2_typo_descender - metrics.hhea_descent
         )
     )
@@ -76,7 +82,9 @@ def get_font_report(fontpath):
         )
     )
     report.append("")
-    report.append("--- Baseline to Baseline Distances ---")
+    report.append(":" * 50)
+    report.append("  Baseline to Baseline Distances")
+    report.append(":" * 50)
     report.append("hhea metrics: {}".format(metrics.hhea_btb_distance))
     report.append("typo metrics: {}".format(metrics.typo_btb_distance))
     report.append("win metrics:  {}".format(metrics.win_btb_distance))
@@ -87,7 +95,9 @@ def get_font_report(fontpath):
         )
     )
     report.append("")
-    report.append("--- Ratios ---")
+    report.append(":" * 50)
+    report.append("  Ratios")
+    report.append(":" * 50)
     report.append("hhea metrics / UPM:  {0:.3g}".format(metrics.hheaascdesc_to_upm))
     report.append("typo metrics / UPM:  {0:.3g}".format(metrics.typo_to_upm))
     report.append("win metrics / UPM:   {0:.3g}".format(metrics.winascdesc_to_upm))
