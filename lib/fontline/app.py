@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 """
 The app.py module defines a main() function that includes the logic for the `font-line` command line executable.
@@ -23,7 +22,6 @@ from fontline.utilities import file_exists, is_supported_filetype
 
 # TODO: support integer addition and subtraction to the metrics values through new sub-commands
 # TODO: JSON formatted metrics output
-# TODO: add report line items for 'exceeds ymax/ymin values' across each of the three metrics
 
 
 def main():

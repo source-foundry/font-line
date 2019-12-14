@@ -1,5 +1,13 @@
 ## Changelog
 
+### v3.0.0
+
+- added baseline to baseline distance calculations for hhea, typo, and win metrics to reports
+- added fsSelection bit 7 `USE_TYPO_METRICS` bit flag setting to report
+- standard output report formatting improvements for `report` subcommand
+- removed Py3.5 interpreter testing, we will support for Py3.6+ only as of this release
+- add support for automated source code coverage push to Codecov from Travis
+
 ### v2.0.0
 
 - changed copyright notice from "Christopher Simpkins" to "Source Foundry Authors"
