@@ -28,7 +28,7 @@ font-line is a libre, open source command line tool for OpenType vertical metric
 
 ## Install
 
-font-line is built with Python and is tested with Python 3.5+ interpreters. You can verify your installed Python version on the command line with the command:
+font-line is built with Python and is tested with Python 3.6+ interpreters. You can verify your installed Python version on the command line with the command:
 
 ```
 $ python3 --version
@@ -106,40 +106,57 @@ $ font-line report Hack-Regular.ttf
 #### Example Font Vertical Metrics Report
 ```
 === Hack-Regular.ttf ===
-Version 3.001; 379b3ad6d-dev
-SHA1: 20d02edca75f2d23787e80161a64418598c850de
+Version 3.003;[3114f1256]-release
+SHA1: b1cd50ba36380d6d6ada37facfc954a8f20c15ba
 
---- Metrics ---
-[head] Units per Em: 	2048
-[head] yMax: 		2027
-[head] yMin: 		-605
-[OS/2] CapHeight: 	1493
-[OS/2] xHeight: 	1120
-[OS/2] TypoAscender: 	1556
-[OS/2] TypoDescender: 	-492
-[OS/2] WinAscent: 	1901
-[OS/2] WinDescent: 	483
-[hhea] Ascent: 		1901
-[hhea] Descent: 	-483
+::::::::::::::::::::::::::::::::::::::::::::::::::
+  Metrics
+::::::::::::::::::::::::::::::::::::::::::::::::::
+[head] Units per Em:   2048
+[head] yMax:           2027
+[head] yMin:          -605
+[OS/2] CapHeight:      1493
+[OS/2] xHeight:        1120
+[OS/2] TypoAscender:   1556
+[OS/2] TypoDescender: -492
+[OS/2] WinAscent:      1901
+[OS/2] WinDescent:     483
+[hhea] Ascent:         1901
+[hhea] Descent:       -483
 
-[hhea] LineGap: 	0
-[OS/2] TypoLineGap: 	410
+[hhea] LineGap:        0
+[OS/2] TypoLineGap:    410
 
---- Height Calculations by Table Values ---
-[OS/2] TypoAscender to TypoDescender: 	2048
-[OS/2] WinAscent to WinDescent: 	2384
-[hhea] Ascent to Descent: 		2384
+::::::::::::::::::::::::::::::::::::::::::::::::::
+  Ascent to Descent Calculations
+::::::::::::::::::::::::::::::::::::::::::::::::::
+[hhea] Ascent to Descent:              2384
+[OS/2] TypoAscender to TypoDescender:  2048
+[OS/2] WinAscent to WinDescent:        2384
 
---- Delta Values ---
-WinAscent to TypoAscender: 	345
-Ascent to TypoAscender: 	345
-WinDescent to TypoDescender: 	-9
-Descent to TypoDescender: 	-9
+::::::::::::::::::::::::::::::::::::::::::::::::::
+  Delta Values
+::::::::::::::::::::::::::::::::::::::::::::::::::
+[hhea] Ascent to [OS/2] TypoAscender:       345
+[hhea] Descent to [OS/2] TypoDescender:     -9
+[OS/2] WinAscent to [OS/2] TypoAscender:    345
+[OS/2] WinDescent to [OS/2] TypoDescender:  -9
 
---- Ratios ---
-(Typo Asc + Desc + Linegap) / UPM: 	1.2
-(winAsc + winDesc) / UPM: 		1.16
-(hhea Asc + Desc) / UPM: 		1.16
+::::::::::::::::::::::::::::::::::::::::::::::::::
+  Baseline to Baseline Distances
+::::::::::::::::::::::::::::::::::::::::::::::::::
+hhea metrics: 2384
+typo metrics: 2458
+win metrics:  2384
+
+[OS/2] fsSelection USE_TYPO_METRICS bit set: False
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+  Ratios
+::::::::::::::::::::::::::::::::::::::::::::::::::
+hhea metrics / UPM:  1.16
+typo metrics / UPM:  1.2
+win metrics  / UPM:  1.16
 ```
 
 The report includes the font version string, a SHA-1 hash digest of the font file, and OpenType table metrics that are associated with line spacing in the font.
