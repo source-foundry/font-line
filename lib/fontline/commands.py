@@ -41,9 +41,13 @@ def get_font_report(fontpath):
     report.append("")
 
     report.append("--- Ascent to Descent Calculations ---")
-    report.append("[hhea] Ascent to Descent:              {}".format(metrics.hhea_total_height))
     report.append(
-        "[OS/2] TypoAscender to TypoDescender:  {}".format(metrics.os2_typo_total_height)
+        "[hhea] Ascent to Descent:              {}".format(metrics.hhea_total_height)
+    )
+    report.append(
+        "[OS/2] TypoAscender to TypoDescender:  {}".format(
+            metrics.os2_typo_total_height
+        )
     )
     report.append(
         "[OS/2] WinAscent to WinDescent:        {}".format(metrics.os2_win_total_height)
@@ -78,7 +82,9 @@ def get_font_report(fontpath):
     report.append("win metrics:  {}".format(metrics.win_btb_distance))
     report.append("")
     report.append(
-        "[OS/2] fsSelection USE_TYPO_METRICS bit set: {}".format(metrics.fsselection_bit7_set)
+        "[OS/2] fsSelection USE_TYPO_METRICS bit set: {}".format(
+            metrics.fsselection_bit7_set
+        )
     )
     report.append("")
     report.append("--- Ratios ---")

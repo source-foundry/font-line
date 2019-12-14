@@ -8,7 +8,6 @@ class MetricsObject:
         self.tt = tt
         self.filepath = filepath
         self.sha1 = get_sha1(self.filepath)
-        namerecord_list = tt["name"].names
         # Version string
         self.version = ""
         for needle in tt["name"].names:
@@ -38,7 +37,9 @@ class MetricsObject:
 
         # Bit flag checks
         self.fsselection_bit7_mask = 1 << 7
-        self.fsselection_bit7_set = (tt["OS/2"].fsSelection & self.fsselection_bit7_mask) != 0
+        self.fsselection_bit7_set = (
+            tt["OS/2"].fsSelection & self.fsselection_bit7_mask
+        ) != 0
 
         # Calculated values
         self.os2_typo_total_height = self.os2_typo_ascender - self.os2_typo_descender
@@ -48,14 +49,15 @@ class MetricsObject:
         self.hhea_btb_distance = self.hhea_total_height + self.hhea_linegap
         self.typo_btb_distance = self.os2_typo_total_height + self.os2_typo_linegap
         self.win_external_leading = self.hhea_linegap - (
-                (self.os2_win_ascent + self.os2_win_descent) - (self.hhea_ascent - self.hhea_descent)
+            (self.os2_win_ascent + self.os2_win_descent)
+            - (self.hhea_ascent - self.hhea_descent)
         )
         if self.win_external_leading < 0:
             self.win_external_leading = 0
-        self.win_btb_distance = self.os2_win_ascent + self.os2_win_descent + self.win_external_leading
+        self.win_btb_distance = (
+            self.os2_win_ascent + self.os2_win_descent + self.win_external_leading
+        )
 
         self.typo_to_upm = 1.0 * self.typo_btb_distance / self.units_per_em
         self.winascdesc_to_upm = 1.0 * self.win_btb_distance / self.units_per_em
         self.hheaascdesc_to_upm = 1.0 * self.hhea_btb_distance / self.units_per_em
-
-
