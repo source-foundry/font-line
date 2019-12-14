@@ -42,9 +42,9 @@ class MetricsObject:
         ) != 0
 
         # Calculated values
-        self.os2_typo_total_height = self.os2_typo_ascender - self.os2_typo_descender
+        self.os2_typo_total_height = self.os2_typo_ascender + abs(self.os2_typo_descender)
         self.os2_win_total_height = self.os2_win_ascent + self.os2_win_descent
-        self.hhea_total_height = self.hhea_ascent - self.hhea_descent
+        self.hhea_total_height = self.hhea_ascent + abs(self.hhea_descent)
 
         self.hhea_btb_distance = self.hhea_total_height + self.hhea_linegap
         self.typo_btb_distance = self.os2_typo_total_height + self.os2_typo_linegap
