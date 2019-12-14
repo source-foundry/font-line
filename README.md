@@ -169,6 +169,35 @@ $ font-line report TheFont.ttf > font-report.txt
 
 You can modify the `font-report.txt` file path above to the file path string of your choice.
 
+#### Baseline to Baseline Distance Calculations
+
+Baseline to baseline distance (BTBD) calculations are performed according to the [Microsoft Recommendations for OpenType Fonts](https://docs.microsoft.com/en-us/typography/opentype/spec/recom#baseline-to-baseline-distances).
+
+##### hhea Metrics
+
+```
+BTBD = hhea.Ascent + abs(hhea.Descent) + hhea.LineGap
+```
+
+##### typo Metrics
+
+```
+BTBD = OS/2.typoAscent + abs(OS/2.typoDescent) + OS/2.typoLineGap
+```
+
+##### win Metrics
+
+```
+BTBD = OS/2.winAscent + OS/2.winDescent + [External Leading]
+```
+
+where external leading is defined as:
+
+```
+MAX(0, hhea.LineGap - ((OS/2.WinAscent + OS/2.winDescent) - (hhea.Ascent - hhea.Descent)))
+```
+
+
 ### Vertical Metrics Modifications
 
 font-line supports automated line spacing modifications to a user-defined percentage of the units per em metric.  This value will be abbreviated as UPM below.
