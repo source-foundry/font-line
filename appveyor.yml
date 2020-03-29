@@ -8,13 +8,17 @@ environment:
       PYTHON_HOME: "C:\\Python37-x64"
       TOX_PY: py37
 
+    - JOB: "3.8 64-bit"
+      PYTHON_HOME: "C:\\Python38-x64"
+      TOX_PY: py38
+
 install:
   # Prepend Python to the PATH of this build
   - "SET PATH=%PYTHON_HOME%;%PYTHON_HOME%\\Scripts;%PATH%"
 
   # check that we have the expected version and architecture for Python
   - "python --version"
-  - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
+  - 'python -c "import struct; print(struct.calcsize(''P'') * 8)"'
 
   # upgrade pip and setuptools to avoid out-of-date warnings
   - "python -m pip install --disable-pip-version-check --user --upgrade pip setuptools virtualenv"
