@@ -18,6 +18,11 @@ matrix:
       install: pip install tox
       dist: xenial
       script: tox -e $TOX_ENV
+    - python: 3.8
+      env: TOX_ENV=py38
+      install: pip install tox
+      dist: xenial
+      script: tox -e $TOX_ENV
     - python: 3.7
       dist: xenial
       env: TOX_ENV=coverage
