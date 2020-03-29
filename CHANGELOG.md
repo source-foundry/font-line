@@ -1,5 +1,9 @@
 ## Changelog
 
+### v3.1.1
+
+- remove Py2 wheels
+
 ### v3.1.0
 
 - add requirements.txt file with pinned dependency versions
