@@ -34,7 +34,7 @@ matrix:
       env: TOX_ENV=coverage
       install:
         - pip install --upgrade coverage
-        - pip install -r requirements.txt
+        - pip install -r requirements.txt .
       script:
         - coverage run --source fontline -m py.test
         - coverage report -m
