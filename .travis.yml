@@ -13,20 +13,17 @@ matrix:
       env: TOX_ENV=py36
       install:
         - pip install tox
-        - pip install -r requirements.txt
       script: tox -e $TOX_ENV
     - python: 3.7
       env: TOX_ENV=py37
       install:
         - pip install tox
-        - pip install -r requirements.txt
       dist: xenial
       script: tox -e $TOX_ENV
     - python: 3.8
       env: TOX_ENV=py38
       install:
         - pip install tox
-        - pip install -r requirements.txt
       dist: xenial
       script: tox -e $TOX_ENV
     - python: 3.7
