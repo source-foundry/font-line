@@ -1,21 +1,19 @@
 <img src ="https://raw.githubusercontent.com/source-foundry/font-line/img/img/font-line-crunch.png" />
 
-
-[![PyPI](https://img.shields.io/pypi/v/font-line.svg)](https://pypi.org/project/font-line)
+[![PyPI](https://img.shields.io/pypi/v/font-line?color=blueviolet&label=PyPI&logo=python&logoColor=white)](https://pypi.org/project/font-line)
 [![Build Status](https://travis-ci.org/source-foundry/font-line.svg?branch=master)](https://travis-ci.org/source-foundry/font-line)
-[![Build status](https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true)](https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master) 
+[![Build status](https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true)](https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master)
 [![codecov.io](https://codecov.io/github/source-foundry/font-line/coverage.svg?branch=master)](https://codecov.io/github/source-foundry/font-line?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d77b55866c794a5a9dd3b3dfea9ec318)](https://www.codacy.com/app/SourceFoundry/font-line)
 
 ## About
-font-line is a libre, open source command line tool for OpenType vertical metrics reporting and command line based font line spacing modifications.  It supports `.ttf` and `.otf` font builds.
+
+font-line is a libre, open source command line tool for OpenType vertical metrics reporting and command line based font line spacing modifications. It supports `.ttf` and `.otf` font builds.
 
 ## Contents
 
 - [Install Guide](https://github.com/source-foundry/font-line#install)
-- [Usage](https://github.com/source-foundry/font-line#usage)
-	- [Vertical Metrics Reporting](https://github.com/source-foundry/font-line#vertical-metrics-reporting)
-	- [Line Spacing Modifications](https://github.com/source-foundry/font-line#vertical-metrics-modifications)
+- [Usage](https://github.com/source-foundry/font-line#usage) - [Vertical Metrics Reporting](https://github.com/source-foundry/font-line#vertical-metrics-reporting) - [Line Spacing Modifications](https://github.com/source-foundry/font-line#vertical-metrics-modifications)
 - [Changelog](https://github.com/source-foundry/font-line/blob/master/CHANGELOG.md)
 - [License](https://github.com/source-foundry/font-line/blob/master/docs/LICENSE.md)
 
@@ -64,7 +62,7 @@ Follow the same instructions to upgrade to a new version of the application if y
 
 ## Usage
 
-font-line works via sub-commands to the `font-line` command line executable.  The following sub-commands are available:
+font-line works via sub-commands to the `font-line` command line executable. The following sub-commands are available:
 
 - `percent` - modify the line spacing of a font to a percent of the Ascender to Descender distance
 - `report` - report OpenType metrics values for a font
@@ -104,6 +102,7 @@ $ font-line report Hack-Regular.ttf
 ```
 
 #### Example Font Vertical Metrics Report
+
 ```
 === Hack-Regular.ttf ===
 Version 3.003;[3114f1256]-release
@@ -197,20 +196,19 @@ where external leading is defined as:
 MAX(0, hhea.LineGap - ((OS/2.WinAscent + OS/2.winDescent) - (hhea.Ascent - hhea.Descent)))
 ```
 
-
 ### Vertical Metrics Modifications
 
-font-line supports automated line spacing modifications to a user-defined percentage of the units per em metric.  This value will be abbreviated as UPM below.
+font-line supports automated line spacing modifications to a user-defined percentage of the units per em metric. This value will be abbreviated as UPM below.
 
 #### `percent` Sub-Command Usage
 
-Enter the desired percentage of the UPM as the first argument to the command.  This should be *entered as an integer value*.  Then enter one or more font paths to which you would like to apply your font metrics changes.
+Enter the desired percentage of the UPM as the first argument to the command. This should be _entered as an integer value_. Then enter one or more font paths to which you would like to apply your font metrics changes.
 
 ```
 $ font-line percent [percent change] [fontpath 1] <fontpath ...>
 ```
 
-A common default value used by typeface designers is 20% UPM.  To modify a font on the path `TheFont.ttf` to 20% of the UPM metric, you would enter the following command:
+A common default value used by typeface designers is 20% UPM. To modify a font on the path `TheFont.ttf` to 20% of the UPM metric, you would enter the following command:
 
 ```
 $ font-line percent 20 TheFont.ttf
@@ -218,13 +216,13 @@ $ font-line percent 20 TheFont.ttf
 
 Increase or decrease the integer value to increase or decrease your line spacing accordingly.
 
-The original font file is preserved in an unmodified version and the modified file write takes place on a new path defined as `[original filename]-linegap[percent].[ttf|otf]`.  The path to the file is reported to you in the standard output after the modification is completed.  font-line does not modify the glyph set or hints applied to the font.  See the Details section below for a description of the OpenType table modifications that occur when the application is used on a font file.
+The original font file is preserved in an unmodified version and the modified file write takes place on a new path defined as `[original filename]-linegap[percent].[ttf|otf]`. The path to the file is reported to you in the standard output after the modification is completed. font-line does not modify the glyph set or hints applied to the font. See the Details section below for a description of the OpenType table modifications that occur when the application is used on a font file.
 
 You can inspect the vertical metrics in the new font file with the `report` sub-command (see Usage above).
 
 #### Details of Font Metrics Changes with `percent` Sub-Command
 
-The interpretation and display of these multiple vertical metrics values is platform and application dependent.  [There is no broadly accepted "best" approach](https://github.com/source-foundry/font-line/issues/2).  As such, font-line attempts to preserve the original metrics design in the font when modifications are made with the `percent` sub-command.
+The interpretation and display of these multiple vertical metrics values is platform and application dependent. [There is no broadly accepted "best" approach](https://github.com/source-foundry/font-line/issues/2). As such, font-line attempts to preserve the original metrics design in the font when modifications are made with the `percent` sub-command.
 
 font-line currently supports three commonly used vertical metrics approaches.
 
@@ -237,7 +235,7 @@ Where metrics are defined as:
 - [OS/2] TypoAscender = [OS/2] winAscent = [hhea] Ascent
 - [OS/2] TypoDescender = [OS/2] winDescent = [hhea] Descent
 
-font-line calculates a delta value for the total expected height based upon the % UPM value defined on the command line.  The difference between this value and the observed number of units that span the [OS/2] winAscent to winDescent values is divided by half and then added to (for increased line spacing) or subtracted from (for decreased line spacing) each of the three sets of Ascender/Descender values in the font.  The [OS/2] TypoLinegap and [hhea] linegap values are not modified.
+font-line calculates a delta value for the total expected height based upon the % UPM value defined on the command line. The difference between this value and the observed number of units that span the [OS/2] winAscent to winDescent values is divided by half and then added to (for increased line spacing) or subtracted from (for decreased line spacing) each of the three sets of Ascender/Descender values in the font. The [OS/2] TypoLinegap and [hhea] linegap values are not modified.
 
 **Vertical Metrics Approach 2**
 
@@ -249,7 +247,7 @@ Where metrics are defined as:
 - [OS/2] winAscent = [hhea] Ascent
 - [OS/2] winDescent = [hhea] Descent
 
-font-line calculates a delta value for the total expected height based upon the % UPM value defined on the command line.  The difference between this value and the observed number of units that span the [OS/2] winAscent to winDescent values is divided by half and then added to (for increased line spacing) or subtracted from (for decreased line spacing) the [OS/2] winAsc/winDesc and [hhea] Asc/Desc values.  The [OS/2] TypoAsc/TypoDesc values are not modified and maintain a definition of size = UPM value. The [OS/2] TypoLinegap and [hhea] linegap values are not modified.
+font-line calculates a delta value for the total expected height based upon the % UPM value defined on the command line. The difference between this value and the observed number of units that span the [OS/2] winAscent to winDescent values is divided by half and then added to (for increased line spacing) or subtracted from (for decreased line spacing) the [OS/2] winAsc/winDesc and [hhea] Asc/Desc values. The [OS/2] TypoAsc/TypoDesc values are not modified and maintain a definition of size = UPM value. The [OS/2] TypoLinegap and [hhea] linegap values are not modified.
 
 **Vertical Metrics Approach 3**
 
@@ -261,31 +259,28 @@ Where metrics are defined as:
 - [OS/2] winAscent = [hhea] Ascent
 - [OS/2] winDescent = [hhea] Descent
 
-*Changes to the metrics values in the font are defined as*:
+_Changes to the metrics values in the font are defined as_:
 
-- [OS/2] TypoLineGap = x% * UPM value
+- [OS/2] TypoLineGap = x% \* UPM value
 - [hhea] Ascent = [OS/2] TypoAscender + 0.5(modified TypoLineGap)
 - [hhea] Descent = [OS/2] TypoDescender + 0.5(modified TypoLineGap)
 - [OS/2] WinAscent = [OS/2] TypoAscender + 0.5(modified TypoLineGap)
 - [OS/2] WinDescent = [OS/2] TypoDescender + 0.5(modified TypoLineGap)
 
-Note that the internal leading modifications are split evenly across [hhea] Ascent & Descent values, and across [OS/2] WinAscent & WinDescent values.  We add half of the new [OS/2] TypoLineGap value to the original [OS/2] TypoAscender or TypoDescender in order to define these new metrics properties.   The [hhea] linegap value is always defined as zero.
+Note that the internal leading modifications are split evenly across [hhea] Ascent & Descent values, and across [OS/2] WinAscent & WinDescent values. We add half of the new [OS/2] TypoLineGap value to the original [OS/2] TypoAscender or TypoDescender in order to define these new metrics properties. The [hhea] linegap value is always defined as zero.
 
 ### Important
 
-The newly defined vertical metrics values can lead to clipping of glyph components if not properly defined.  There are no tests in font-line to provide assurance that this does not occur. We assume that the user is versed in these issues before use of the application and leave this testing to the designer / user before the modified fonts are used in a production setting.
-
+The newly defined vertical metrics values can lead to clipping of glyph components if not properly defined. There are no tests in font-line to provide assurance that this does not occur. We assume that the user is versed in these issues before use of the application and leave this testing to the designer / user before the modified fonts are used in a production setting.
 
 ## Issue Reporting
 
 Please [submit a new issue report](https://github.com/source-foundry/font-line/issues/new) on the project repository.
 
-
 ## Acknowledgments
 
 font-line is built with the fantastic [fontTools](https://github.com/fonttools/fonttools) Python library.
 
-
 ## License
 
-MIT License.  See [LICENSE.md](docs/LICENSE.md) for details.
+MIT License. See [LICENSE.md](docs/LICENSE.md) for details.

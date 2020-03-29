@@ -1,5 +1,13 @@
 ## Changelog
 
+### v3.1.0
+
+- add requirements.txt file with pinned dependency versions
+- update all build dependencies to current release versions
+- the fontTools dependency updates add support for Unicode 13
+- convert PyPI documentation to repository README Markdown file
+- add Py3.8 interpreter to CI testing
+
 ### v3.0.0
 
 - added baseline to baseline distance calculations for hhea, typo, and win metrics to reports
@@ -18,7 +26,7 @@
 - modified Travis CI testing to Python 3.5 - 3.7
 - refactored Appveyor CI settings file
 - modified Appveyor CI testing to Python 3.5 - 3.7
-- 
+-
 
 ### v1.0.1
 
@@ -52,8 +60,8 @@
 
 - modified percent command calculations to maintain vertical metrics approaches in the original font design
 - added vertical metrics modification support for fonts designed with the following vertical metrics approaches:
-    - Google style metrics where TypoLinegap = hhea linegap = 0, internal leading is present in [OS/2] TypoAsc/TypoDesc, [hhea] Asc/Desc, [OS/2] winAsc/winDesc
-    - Adobe style metrics where TypoLinegap = hhea linegap = 0, TypoAsc - TypoDesc = UPM, internal leading in [hhea] Asc/Desc & [OS/2] winAsc/winDesc
+  - Google style metrics where TypoLinegap = hhea linegap = 0, internal leading is present in [OS/2] TypoAsc/TypoDesc, [hhea] Asc/Desc, [OS/2] winAsc/winDesc
+  - Adobe style metrics where TypoLinegap = hhea linegap = 0, TypoAsc - TypoDesc = UPM, internal leading in [hhea] Asc/Desc & [OS/2] winAsc/winDesc
 
 ### v0.5.4
 

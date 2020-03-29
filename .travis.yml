@@ -11,11 +11,19 @@ matrix:
       script: flake8 --ignore=E501,W503 lib/fontline/*.py
     - python: 3.6
       env: TOX_ENV=py36
-      install: pip install tox
+      install:
+        - pip install tox
       script: tox -e $TOX_ENV
     - python: 3.7
       env: TOX_ENV=py37
-      install: pip install tox
+      install:
+        - pip install tox
+      dist: xenial
+      script: tox -e $TOX_ENV
+    - python: 3.8
+      env: TOX_ENV=py38
+      install:
+        - pip install tox
       dist: xenial
       script: tox -e $TOX_ENV
     - python: 3.7
@@ -23,7 +31,7 @@ matrix:
       env: TOX_ENV=coverage
       install:
         - pip install --upgrade coverage
-        - pip install .
+        - pip install -r requirements.txt .
       script:
         - coverage run --source fontline -m py.test
         - coverage report -m
