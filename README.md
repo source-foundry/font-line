@@ -1,8 +1,8 @@
 <img src ="https://raw.githubusercontent.com/source-foundry/font-line/img/img/font-line-crunch.png" />
 
 [![PyPI](https://img.shields.io/pypi/v/font-line?color=blueviolet&label=PyPI&logo=python&logoColor=white)](https://pypi.org/project/font-line)
-[![Build Status](https://travis-ci.org/source-foundry/font-line.svg?branch=master)](https://travis-ci.org/source-foundry/font-line)
-[![Build status](https://ci.appveyor.com/api/projects/status/2s4725o5mxh2298c/branch/master?svg=true)](https://ci.appveyor.com/project/chrissimpkins/font-line/branch/master)
+![Python CI](https://github.com/source-foundry/font-line/workflows/Python%20CI/badge.svg)
+![Python Lints](https://github.com/source-foundry/font-line/workflows/Python%20Lints/badge.svg)
 [![codecov.io](https://codecov.io/github/source-foundry/font-line/coverage.svg?branch=master)](https://codecov.io/github/source-foundry/font-line?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d77b55866c794a5a9dd3b3dfea9ec318)](https://www.codacy.com/app/SourceFoundry/font-line)
 
