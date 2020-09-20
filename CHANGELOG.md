@@ -1,5 +1,11 @@
 ## Changelog
 
+### v3.1.2
+
+- adjust line length to < 90
+- transition to GitHub Actions CI testing service
+- update fonttools dependency to v4.14.0
+
 ### v3.1.1
 
 - remove Py2 wheels
