@@ -1,0 +1,54 @@
+name: Coverage
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Display Python version & architecture
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -c "import struct; print(struct.calcsize('P') * 8)"
+      - name: Get pip cache dir
+        id: pip-cache
+        run: |
+          pip install --upgrade pip
+          echo "::set-output name=dir::$(pip cache dir)"
+      - name: pip cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install Python testing dependencies
+        run: pip install --upgrade pytest
+      - name: Install Python project dependencies
+        uses: py-actions/py-dependency-install@v2
+        with:
+          update-pip: "true"
+          update-setuptools: "true"
+          update-wheel: "true"
+      - name: Install project
+        run: pip install .
+      - name: Generate coverage report
+        run: |
+          pip install --upgrade coverage
+          coverage run --source fontline -m py.test
+          coverage report -m
+          coverage xml
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage.xml
