@@ -54,7 +54,9 @@ setup(
     packages=find_packages("lib"),
     package_dir={"": "lib"},
     install_requires=["commandlines", "standardstreams", "fontTools"],
-    entry_points={"console_scripts": ["font-line = fontline.app:main"],},
+    entry_points={
+        "console_scripts": ["font-line = fontline.app:main"],
+    },
     keywords="font,typeface,fonts,spacing,line spacing,spaces,vertical metrics,metrics,type",
     include_package_data=True,
     classifiers=[
@@ -63,13 +65,11 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.3",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
 )
