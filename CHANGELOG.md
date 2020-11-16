@@ -5,6 +5,7 @@
 - bump fonttools dependency to v4.17.0
 - update setup.py classifiers to remove Py2.7, Py < 3.6
 - update setup.py classifiers to include Py 3.7, 3.8, 3.9
+- remove docs/README.rst (no longer used for PyPI release documentation and not maintained)
 
 ### v3.1.3
 
