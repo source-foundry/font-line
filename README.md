@@ -26,7 +26,7 @@ font-line is a libre, open source command line tool for OpenType vertical metric
 
 ## Install
 
-font-line is built with Python and is tested with Python 3.6+ interpreters. You can verify your installed Python version on the command line with the command:
+font-line is built with Python and supports Python 3.7+ interpreters. Check your installed Python version on the command line with the command:
 
 ```
 $ python3 --version
@@ -166,7 +166,7 @@ Unix/Linux/OS X users can write this report to a file with the `>` command line 
 $ font-line report TheFont.ttf > font-report.txt
 ```
 
-You can modify the `font-report.txt` file path above to the file path string of your choice.
+Modify the `font-report.txt` file path above to the file path string of your choice.
 
 #### Baseline to Baseline Distance Calculations
 
