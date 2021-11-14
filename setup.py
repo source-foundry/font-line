@@ -4,6 +4,8 @@ import re
 import sys
 from setuptools import setup, find_packages
 
+REQUIRES_PYTHON = ">=3.7.0"
+
 
 # Use repository Markdown README.md for PyPI long description
 try:
@@ -51,6 +53,7 @@ setup(
     author="Christopher Simpkins",
     author_email="chris@sourcefoundry.org",
     platforms=["any"],
+    python_requires=REQUIRES_PYTHON,
     packages=find_packages("lib"),
     package_dir={"": "lib"},
     install_requires=["commandlines", "standardstreams", "fontTools"],
@@ -66,10 +69,10 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
 )
