@@ -6,7 +6,7 @@
 #
 commandlines==0.4.1
     # via font-line (setup.py)
-fonttools==4.28.2
+fonttools==4.28.3
     # via font-line (setup.py)
 standardstreams==0.2.0
     # via font-line (setup.py)
